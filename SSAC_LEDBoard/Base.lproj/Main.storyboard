@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="landscape" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -14,23 +14,23 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="BoardViewController" customModule="SSAC_LEDBoard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="💕" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.20000000000000001" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yUu-Jw-rAA" userLabel="ResultLabel">
-                                <rect key="frame" x="60" y="54" width="294" height="818"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="💕" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.20000000000000001" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yUu-Jw-rAA" userLabel="ResultLabel" customClass="MarqueeLabel" customModule="MarqueeLabel">
+                                <rect key="frame" x="44" y="10" width="808" height="393"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" systemColor="systemYellowColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jn2-oM-M9R">
-                                <rect key="frame" x="16" y="44" width="382" height="70"/>
+                                <rect key="frame" x="60" y="0.0" width="776" height="70"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LLx-r7-jPP">
-                                        <rect key="frame" x="10" y="10" width="362" height="50"/>
+                                        <rect key="frame" x="10" y="10" width="756" height="50"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JM6-6g-7oa">
-                                                <rect key="frame" x="0.0" y="0.0" width="222" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="616" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -38,7 +38,7 @@
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ngo-he-70F">
-                                                <rect key="frame" x="232" y="0.0" width="70" height="50"/>
+                                                <rect key="frame" x="626" y="0.0" width="70" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="70" id="ZYl-Ay-GVi"/>
                                                 </constraints>
@@ -49,7 +49,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTK-Ng-cEf">
-                                                <rect key="frame" x="312" y="0.0" width="50" height="50"/>
+                                                <rect key="frame" x="706" y="0.0" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="1ht-4n-STx"/>
                                                 </constraints>
@@ -92,20 +92,20 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yUu-Jw-rAA" secondAttribute="trailing" id="7tt-FL-SO8"/>
+                            <constraint firstItem="yUu-Jw-rAA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8ZA-iz-4xu"/>
                             <constraint firstItem="yUu-Jw-rAA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="HrV-8Y-1IV"/>
                             <constraint firstItem="jn2-oM-M9R" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Rud-3R-ryc"/>
                             <constraint firstItem="yUu-Jw-rAA" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="10" id="VOu-bd-pvs"/>
-                            <constraint firstItem="yUu-Jw-rAA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="fQb-c7-jUh"/>
                             <constraint firstItem="jn2-oM-M9R" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="jl4-yg-voM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jn2-oM-M9R" secondAttribute="trailing" constant="16" id="lvZ-gp-XqE"/>
                             <constraint firstItem="jn2-oM-M9R" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="n4q-39-vI0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yUu-Jw-rAA" secondAttribute="trailing" constant="60" id="zLb-Lv-x2i"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="colorButton" destination="fTK-Ng-cEf" id="iJZ-DU-gy7"/>
                         <outlet property="contentTextFeild" destination="JM6-6g-7oa" id="DbL-Yg-lZr"/>
-                        <outlet property="resultLabel" destination="yUu-Jw-rAA" id="Oi8-Ux-2V0"/>
+                        <outlet property="resultLabel" destination="yUu-Jw-rAA" id="PFN-CD-MLQ"/>
                         <outlet property="sendButton" destination="Ngo-he-70F" id="c3F-G0-w59"/>
                         <outlet property="slideUIView" destination="jn2-oM-M9R" id="Ppo-mW-SKC"/>
                     </connections>
@@ -118,6 +118,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

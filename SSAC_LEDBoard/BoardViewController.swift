@@ -16,8 +16,9 @@ class BoardViewController: UIViewController {
     @IBOutlet var contentTextFeild: UITextField!
     @IBOutlet var sendButton: UIButton!
     @IBOutlet var colorButton: UIButton!
-    @IBOutlet var resultLabel: UILabel!
+    //@IBOutlet var resultLabel: UILabel!
     
+    @IBOutlet var resultLabel: MarqueeLabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,25 +53,19 @@ class BoardViewController: UIViewController {
     }
     
     func resultLabelSetting() {
-        resultLabel.textColor = .yellow
+        //resultLabel.textColor = .yellow
         resultLabel.textAlignment = .center
-        resultLabel.adjustsFontSizeToFitWidth = true
-        resultLabel.numberOfLines = 1
-        //resultLabel.minimumScaleFactor = 300
-        resultLabel.font = .systemFont(ofSize: 300)
+        resultLabel.font = .systemFont(ofSize: 250)
+        //resultLabel.adjustsFontSizeToFitWidth = true
+        //resultLabel.numberOfLines = 1
+        resultLabel.minimumScaleFactor = 0.5
+        
     }
 
     @IBAction func sendButtonClicked(_ sender: UITextField) {
+        
         resultLabel.text = contentTextFeild.text
-        
-       
-        // 글자 사이즈 조절하기
-     //   let newSize = resultLabel.sizeThatFits( CGSize(width: resultLabel.frame.width, height: CGFloat.greatestFiniteMagnitude))
-        
-//        resultLabel.font = .systemFont(ofSize: newSize)
-        // 키보드 내리기
-        view.endEditing(true)
-        
+        resultLabel.speed = .duration(20) //느림
         
     }
     
