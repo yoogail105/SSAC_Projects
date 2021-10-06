@@ -12,7 +12,7 @@ class TextViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("TEST")
+        print("Hello")
     }
     
 
