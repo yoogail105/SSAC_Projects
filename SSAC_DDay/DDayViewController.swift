@@ -103,5 +103,6 @@ class DDayViewController: UIViewController {
     }
     
     //오류메세지: Terminated due to signal 9
+    // 
 
 }
