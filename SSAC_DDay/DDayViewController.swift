@@ -53,7 +53,7 @@ class DDayViewController: UIViewController {
         print(value) //check
         
         
-        // TimeInterval 사용하여 날짜 계산
+        // TimeInterval 사용
         
 //        let afterDate100 = Date(timeInterval: 86400 * 100, since: sender.date)
 //        dateLabel01.text = format.string(from: afterDate100)
