@@ -70,14 +70,15 @@ class ProfileViewController: UIViewController {
         UserDefaults.standard.set(userName, forKey: "name")
         UserDefaults.standard.set(userHeight, forKey: "height")
         UserDefaults.standard.set(userWeight, forKey: "weight")
-        UserDefaults.standard.set((userHeight+userWeight) * 10, forKey: "goalWater")
-        UserDefaults.standard.set(0, forKey: "currentWater")
+        UserDefaults.standard.set((userHeight+userWeight) * 10, forKey: "waterGoal")
+        UserDefaults.standard.set(0, forKey: "drinkedWater")
+        UserDefaults.standard.set(0, forKey: "goalPercentage")
         
         let userName = UserDefaults.standard.string(forKey: "name")
         let userHeight = UserDefaults.standard.double(forKey: "height")
         let userWeight = UserDefaults.standard.integer(forKey: "weight")
-        let userGoalml = UserDefaults.standard.integer(forKey: "goalWater")
-        let userGoalL = String(format: "%.1f", Double(userGoalml) * 0.001)
+        let waterGoal = UserDefaults.standard.integer(forKey: "waterGoal")
+        let userGoalL = String(format: "%.1f", Double(waterGoal) * 0.001)
         
         // 저장되었다는 알림
         let alert = UIAlertController(title: "저장되었습니다.", message: "\(userName!)님의 \n하루 목표 물 섭취량: \(userGoalL)L", preferredStyle: .alert)

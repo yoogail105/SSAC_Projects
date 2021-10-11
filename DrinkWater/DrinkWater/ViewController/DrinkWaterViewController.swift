@@ -24,14 +24,20 @@ class DrinkWaterViewController: UIViewController {
     @IBOutlet var informGoalLabel: UILabel!
     @IBOutlet var drinkWaterButton: UIButton!
     
+    //userData
     var name:String?
-    var currentWater: Int?
+    var waterGoal: Int?
+    var drinkedWater: Int?
+    var waterPercentage: Int?
+    var userGoalL: String = ""
+    
     var goalMl: Int = 0
     var goalL: String = ""
     var percentage: Double = 0
     
+    var currentWater: Int?
+    
     var message = "같이 해볼까요?"
-    var drinkedWater = 0
     var image = "1-9"
     var textColor = UIColor.white
     
@@ -54,14 +60,19 @@ class DrinkWaterViewController: UIViewController {
     }
     
     func getUserData() {
-        name = UserDefaults.standard.string(forKey: "name")
-        currentWater = UserDefaults.standard.integer(forKey: "currentWater")
-        drinkedWater = currentWater != nil ? currentWater! : 0
-        goalMl = UserDefaults.standard.integer(forKey: "goalWater")
-        goalL = String(format: "%.1f", Double(goalMl) * 0.001)
+        //첫 접속이면 모두 nil
+        name = ud.string(forKey: "name")
+        waterGoal = ud.integer(forKey: "waterGoal") //첫 접속일 때 없다
+        drinkedWater = ud.integer(forKey: "drinkedWater")
+        waterPercentage = ud.integer(forKey: "waterPercentage")
         
-        percentage = (Double(currentWater!)/Double(goalMl)) * 100
-        updateProfileImage(percentage: Int(percentage))
+        if name != nil {
+            let calculateWaterPer = Double(drinkedWater!)/Double(waterGoal!) * 100
+            waterPercentage = Int(round(calculateWaterPer))
+            userGoalL = String(format: "%.1f", Double(waterGoal!) * 0.001)
+        }
+        
+        updateProfileImage(percentage: waterPercentage)
         
     }
     
@@ -91,11 +102,6 @@ class DrinkWaterViewController: UIViewController {
                 print("Notificaton Error: ", error)
             }
         }
-    }
-    
-    func settingLabelUI(lableOutlet label: UILabel, content: String) {
-        label.textAlignment = .left
-        label.textColor = .white
     }
     
 
@@ -143,28 +149,30 @@ class DrinkWaterViewController: UIViewController {
             todayWaterLabel.text = " ??? ml"
             percentWaterLabel.text = "목표의 ??? %"
             informGoalLabel.text = "정보를 입력하고 목표 물 섭취량을 알아봐요!"
+            
         } else {
             
             statusLabel.text = "\(message)\n오늘 마신 물의 양은"
-            todayWaterLabel.text = "\(drinkedWater)ml"
-            percentWaterLabel.text = String(format: "목표의 %.f%%", Double(percentage))
-            informGoalLabel.text = "\(name!)님의 하루 목표 물 섭취량은 \(goalL)L입니다."
+            todayWaterLabel.text = "\(drinkedWater!)ml"
+            percentWaterLabel.text = String(format: "목표의 %.f%%", Double(waterPercentage!))
+            informGoalLabel.text = "\(name!)님의 하루 목표 물 섭취량은 \(userGoalL)L입니다."
             
         }
     }
 
     
+    //addWater: 지금 추가할 물, drinkedWater: 유저가 오늘 마신 물의 합(userData)
     @IBAction func DrinkWaterButtonClicked(_ sender: UIButton) {
         
         var addWater: Int?
         
         if addWaterText.text != "" {
             addWater = Int(addWaterText.text!)
-            addWater! += drinkedWater
-            UserDefaults.standard.set(addWater, forKey: "currentWater")
+            drinkedWater! += addWater!
+            UserDefaults.standard.set(drinkedWater, forKey: "drinkedWater")
             getUserData()
             setMainUI()
-            updateProfileImage(percentage: Int(percentage))
+            updateProfileImage(percentage: Int(waterPercentage!))
         } else {
             addWater = 0
         }
@@ -211,7 +219,7 @@ class DrinkWaterViewController: UIViewController {
     
     //f
     @IBAction func resetButtonClicked(_ sender: UIBarButtonItem) {
-        UserDefaults.standard.set(0, forKey: "currentWater")
+        UserDefaults.standard.set(0, forKey: "drinkedWater")
         getUserData()
         setMainUI()
     }
