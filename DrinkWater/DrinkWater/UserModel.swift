@@ -36,17 +36,17 @@ class UserManager {
         set {UserDefaults.standard.set(newValue, forKey: "name")}
     }
     
-    static var goalWater: Double {
-        get {return UserDefaults.standard.double(forKey: "goalWater")}
-        set {UserDefaults.standard.set(newValue, forKey: "goalWater")}
+    static var waterGoal: Int? {
+        get {return UserDefaults.standard.double(forKey: "waterGoal")}
+        set {UserDefaults.standard.set(newValue, forKey: "waterGoal")}
     }
     
-    static var currentWater: Double {
-        get {return UserDefaults.standard.double(forKey: "currentWater")}
-        set {UserDefaults.standard.set(newValue, forKey: "currentWater")}
+    static var drinkedWater: Int? {
+        get {return UserDefaults.standard.double(forKey: "drinkedWater")}
+        set {UserDefaults.standard.set(newValue, forKey: "drinkedWater")}
     }
     
-    static var waterPercentage: Double {
+    static var waterPercentage: Int? {
         get {return UserDefaults.standard.double(forKey: "waterPercentage")}
         set {UserDefaults.standard.set(newValue, forKey: "waterPercentage")}
     }
