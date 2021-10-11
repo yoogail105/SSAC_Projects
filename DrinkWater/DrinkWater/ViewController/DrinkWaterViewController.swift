@@ -31,11 +31,11 @@ class DrinkWaterViewController: UIViewController {
     var waterPercentage: Int?
     var userGoalL: String = ""
     
-    var goalMl: Int = 0
-    var goalL: String = ""
-    var percentage: Double = 0
+    //var goalMl: Int = 0
+    //var goalL: String = ""
+    //var percentage: Double = 0
     
-    var currentWater: Int?
+    //var currentWater: Int?
     
     var message = "같이 해볼까요?"
     var image = "1-9"
@@ -130,7 +130,7 @@ class DrinkWaterViewController: UIViewController {
         
         
         // 목표
-        percentWaterLabel.text = String(format: "목표의 %.f%%", Double(percentage))
+        percentWaterLabel.text = String(format: "목표의 %.f%%", Double(waterPercentage!))
         percentWaterLabel.font = .systemFont(ofSize: 18, weight: .regular)
         percentWaterLabel.textAlignment = .left
         percentWaterLabel.textColor = textColor
