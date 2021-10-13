@@ -10,7 +10,15 @@ import UIKit
 class MemoTableViewController: UITableViewController {
     // MARK: - PROPERTIES
     
-    var list: [String] = ["장 보기", "메모메모", "영화 보러 가기", "WWDC 시청하기"]
+    // Swift5.1 -> PropertyWrapper(@Environment)
+    // list 앞에 감시자 달아주기
+    var list: [String] = ["장 보기", "메모메모", "영화 보러 가기", "WWDC 시청하기"] {
+        // 완벽하게 변화가 되었을 때 실행
+        didSet {
+            tableView.reloadData()
+            // 달라지면! 감시자야 리로드 시켜!
+        }
+    }
     
     @IBOutlet weak var memoTextView: UITextView!
     override func viewDidLoad() {
@@ -24,8 +32,8 @@ class MemoTableViewController: UITableViewController {
         if let text = memoTextView.text {
             //만약에 메모 텍스트뷰 값이 있다면 (nil아니면) Optional 해제된다.
             list.append(text)
-            
-            tableView.reloadData()
+            //갱신하는 코드 효율적으로 작성하기
+            //tableView.reloadData()
             print(list)
         } else {
             print("빈 값이니 값을 적어주세요 alert 등")
@@ -119,9 +127,9 @@ class MemoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             list.remove(at: indexPath.row)
-            tableView.reloadData()
+            // tableView.reloadData()
         }
         
     }
-    
+    //테이블 뷰 갱신해야 하는 지점: 저장, 삭제
 }
