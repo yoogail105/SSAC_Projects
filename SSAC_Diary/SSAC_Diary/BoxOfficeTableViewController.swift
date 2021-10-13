@@ -14,13 +14,16 @@ class BoxOfficeTableViewController: UITableViewController {
 
      
     }
+    
+    //tableVeiw 필수 1.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
     
+    //tableView 필수 2.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        //타입캐스팅
+        //타입캐스팅: 커스텀 클래스와 연결해 주는 것.
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "BoxOfficeTableViewCell", for: indexPath) as? BoxOfficeTableViewCell else{
             return UITableViewCell()
         }
@@ -33,7 +36,8 @@ class BoxOfficeTableViewController: UITableViewController {
         
         return cell
     }
-    
+
+    //tableView 높이
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.height / 5
     }

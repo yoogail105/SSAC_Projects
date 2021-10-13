@@ -9,12 +9,11 @@ import UIKit
 
 class BoxOfficeTableViewCell: UITableViewCell {
 
-
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var poseterImageVIew: UIImageView!
-    
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseDeteLabel: UILabel!
     @IBOutlet weak var overViewLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
