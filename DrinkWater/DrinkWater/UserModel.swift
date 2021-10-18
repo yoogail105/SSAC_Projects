@@ -37,17 +37,17 @@ class UserManager {
     }
     
     static var waterGoal: Int? {
-        get {return UserDefaults.standard.double(forKey: "waterGoal")}
+        get {return UserDefaults.standard.integer(forKey: "waterGoal")}
         set {UserDefaults.standard.set(newValue, forKey: "waterGoal")}
     }
     
     static var drinkedWater: Int? {
-        get {return UserDefaults.standard.double(forKey: "drinkedWater")}
+        get {return UserDefaults.standard.integer(forKey: "drinkWater")}
         set {UserDefaults.standard.set(newValue, forKey: "drinkedWater")}
     }
     
     static var waterPercentage: Int? {
-        get {return UserDefaults.standard.double(forKey: "waterPercentage")}
+        get {return UserDefaults.standard.integer(forKey: "waterPercentage")}
         set {UserDefaults.standard.set(newValue, forKey: "waterPercentage")}
     }
 }
