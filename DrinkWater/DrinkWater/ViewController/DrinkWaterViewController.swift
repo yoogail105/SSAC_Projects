@@ -49,7 +49,7 @@ class DrinkWaterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getUserData()
+        //getUserData()
         setMainUI()
         //updateProfileImage(percentage: Int(percentage))
         
@@ -58,7 +58,11 @@ class DrinkWaterViewController: UIViewController {
         requestNotificationAuthorization()
         
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        getUserData()
+    }
     func getUserData() {
         //첫 접속이면 모두 nil
         name = ud.string(forKey: "name")
