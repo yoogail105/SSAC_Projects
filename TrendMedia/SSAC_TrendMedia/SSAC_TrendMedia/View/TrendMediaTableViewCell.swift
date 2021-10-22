@@ -7,24 +7,26 @@
 
 import UIKit
 
-class trendMediaTableViewCell: UITableViewCell {
+class TrendMediaTableViewCell: UITableViewCell {
     
     // identifier
-    static let identifier = "trendMediaTableViewCell"
+    static let identifier = "TrendMediaTableViewCell"
     
     
     // IBOutlet
-    @IBOutlet weak var genreLabel: UILabel!
+    
     @IBOutlet weak var releaseDateLabel: UILabel!
-    @IBOutlet weak var castLabel: UILabel!
+    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var castNamesLabel: UILabel!
     @IBOutlet weak var posterImageView: UIImageView!
     
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var movieCardView: UIView!
     
-    
     @IBOutlet weak var rateLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

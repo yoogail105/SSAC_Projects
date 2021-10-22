@@ -7,13 +7,15 @@
 
 import UIKit
 
-class castInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CastInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var castInfoTableView: UITableView!
-    static let identifier = "castInfoViewController"
+   
+    static let identifier = "CastInfoViewController"
     
     var castList = [["리처드 헤리스", "덤블도어교장선생님"], ["이안하트", "퀴럴교수"],["피오나 쇼", "이모"]]
     
+    // MARK: - VIEWDIDLOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         //tableview protocol
@@ -21,10 +23,11 @@ class castInfoViewController: UIViewController, UITableViewDelegate, UITableView
         castInfoTableView.dataSource = self
         
         //pop
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "뒤로", style:  .plain,target:  self, action: #selector(closeButtonClicked))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "뒤로", style:  .plain, target:  self, action: #selector(closeButtonClicked))
         navigationItem.title = "출연/제작"
     }
-    @objc func closeButtonClicked() {
+        
+       @objc func closeButtonClicked() {
         // Push - Pop
         self.navigationController?.popViewController(animated: true)
 
@@ -53,3 +56,6 @@ class castInfoViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
 }
+
+//lines 잊지 말기! 오토메틱디멘션: 태그/매개변수 등 다양한 방법이 있다.
+

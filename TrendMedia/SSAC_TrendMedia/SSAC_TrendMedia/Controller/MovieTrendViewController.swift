@@ -7,9 +7,9 @@
 
 import UIKit
 
-class movieTrendViewController: UIViewController {
+class MovieTrendViewController: UIViewController {
     
-    static let identifier = "movieTrendViewController"
+    static let identifier = "MovieTrendViewController"
     
     //data
     let tvShowData = TvShowData()
@@ -34,10 +34,10 @@ class movieTrendViewController: UIViewController {
     
     @IBAction func searchButtonClicked(_ sender: UIBarButtonItem) {
         //1. sb
-        let sb = storyboard?.instantiateViewController(withIdentifier: movieTrendViewController.identifier)
+        let sb = storyboard?.instantiateViewController(withIdentifier: MovieTrendViewController.identifier)
         
         //2. vc
-        guard let vc = sb?.storyboard?.instantiateViewController(withIdentifier:searchViewController.identifier) as? searchViewController else {
+        guard let vc = sb?.storyboard?.instantiateViewController(withIdentifier:SearchViewController.identifier) as? SearchViewController else {
             print("ERROR")
             return
         }
@@ -57,7 +57,7 @@ class movieTrendViewController: UIViewController {
 
 
 // MARK: - extension: UITableView -> TableViewCell
-extension movieTrendViewController: UITableViewDelegate, UITableViewDataSource {
+extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -74,7 +74,7 @@ extension movieTrendViewController: UITableViewDelegate, UITableViewDataSource {
         
         // 사용할 cell 가져오기
         guard let cell =
-                trendMediaTableView.dequeueReusableCell(withIdentifier: trendMediaTableViewCell.identifier) as? trendMediaTableViewCell else {
+                trendMediaTableView.dequeueReusableCell(withIdentifier: TrendMediaTableViewCell.identifier) as? TrendMediaTableViewCell else {
                     return UITableViewCell()
                 }
         
@@ -89,8 +89,8 @@ extension movieTrendViewController: UITableViewDelegate, UITableViewDataSource {
         cell.genreLabel.text = "#\(row.genre)"
         cell.titleLabel.text = row.title
         cell.textLabel?.textColor = .black
-        cell.castLabel.text = row.starring
-        cell.castLabel.textColor = .lightGray
+        cell.castNamesLabel.text = row.starring
+        cell.castNamesLabel.textColor = .lightGray
         cell.rateLabel.text = String(row.rate)
         cell.rateLabel.textColor = .black
         cell.movieCardView.layer.cornerRadius = 10
@@ -120,7 +120,7 @@ extension movieTrendViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //1. sb: 생략
         //2. vc
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: castInfoViewController.identifier) as? castInfoViewController else {
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: CastInfoViewController.identifier) as? CastInfoViewController else {
             print("Error")
             return
         }
