@@ -48,3 +48,7 @@ cell.posterImageView.image = UIImage(named: posterImageName)
 데이터가 엄~~~~~~~청 많다면 불가능할텐데..
 
 **`→ 예외처리를 어떻게 해야 할까?`**
+
+
+image...
+<img width="725" alt="어노테이션타이틀수정" src="https://user-images.githubusercontent.com/53874628/138416476-a8adec25-dc01-4793-95a7-cba7b45f1121.png">
