@@ -13,35 +13,55 @@ import CoreLocationUI
 class MovieMapViewController: UIViewController {
     
     @IBOutlet weak var currnetLocationTitle: UINavigationItem!
+    
     @IBOutlet weak var movieMapView: MKMapView!
     let theaterData = TheaterData()
-    
-    // 1. CoreLocation
+   
+   
     let  locationManager = CLLocationManager()
+   
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 1. CoreLocation delegate위임
+        locationManager.delegate = self
+        movieMapView.delegate = self
+        
+        // 로케이션의 기준점 설정하기
         // 서울시청: 37.566403559824955, 126.97794018074802
         let location = CLLocationCoordinate2D(latitude: 37.566403559824955, longitude: 126.97794018074802)
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let region = MKCoordinateRegion(center: location, span: span)
         movieMapView.setRegion(region, animated: true)
     
-        //let row = tvShowData.tvShow[indexPath.row]
+       // let row = tvShowData.tvShow[indexPath.row]
         
         for i in theaterData.theater {
-            let annotation = MKPointAnnotation()
-            annotation.title = i.title
-            annotation.coordinate = CLLocationCoordinate2D(latitude: i.location.0, longitude: i.location.1)
-            movieMapView.addAnnotation(annotation)
+            let theaterAnnotation = MKPointAnnotation()
+            theaterAnnotation.title = i.theaterTitle
+            print(i.theaterTitle)
+            theaterAnnotation.coordinate = CLLocationCoordinate2D(latitude: i.location.0, longitude: i.location.1)
+            movieMapView.addAnnotation(theaterAnnotation)
             //moviewMapView.addAnnotations(annotations) ?
         }
+        
+        let annotation = MKPointAnnotation()
+        annotation.title = "HERE!!!"
+        annotation.coordinate = location
+        movieMapView.addAnnotation(annotation) //Anootations: 한 번에 여러개 꽂을 ㅜㅅ 이다.
+        
+        //맴뷰 어노테이션을 삭제하고자 할 때
+        //맴뷰에서 어노티ㅣㅇ션 관련 정보를 가져올 수 있다.
+//        let annotations = movieMapView.annotations
+//        movieMapView.removeAnnotations(annotations)
 
-        locationManager.delegate = self
+        checkUserLoactionServicesAuthorization()
     }
 }
+
+// MARK: - MapView + Extension
 
 extension MovieMapViewController: CLLocationManagerDelegate {
     
@@ -115,7 +135,8 @@ extension MovieMapViewController: CLLocationManagerDelegate {
             movieMapView.setRegion(region, animated: true)
             
             //10.위치업데이트 기준
-            //locationManager.stopUpdatingLocation()
+            locationManager.stopUpdatingLocation()
+
         
         } else { // 주소가 없다면
             print("Loaction Cannot Find: 설정 얼럿 띄우기")

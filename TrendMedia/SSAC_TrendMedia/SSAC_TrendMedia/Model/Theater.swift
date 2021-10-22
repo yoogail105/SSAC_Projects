@@ -6,7 +6,7 @@
 //
 
 struct Theater {
-    let title: String
+    let theaterTitle: String
     let location: (Double, Double)
     let type: Type
     let distance: Double
