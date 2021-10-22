@@ -11,6 +11,8 @@ import CoreLocation
 import CoreLocationUI
 
 class MovieMapViewController: UIViewController {
+    var authorization = false
+    @IBOutlet weak var currentLocationButton: UIButton!
     
     @IBOutlet weak var currnetLocationTitle: UINavigationItem!
     
@@ -35,9 +37,15 @@ class MovieMapViewController: UIViewController {
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let region = MKCoordinateRegion(center: location, span: span)
         movieMapView.setRegion(region, animated: true)
-    
-       // let row = tvShowData.tvShow[indexPath.row]
         
+        // 허용하지 않으면 서울시청
+        let annotation = MKPointAnnotation()
+        annotation.title = "서울시청"
+        annotation.coordinate = location
+        movieMapView.addAnnotation(annotation)
+    
+        
+        // MARK: - 전체 영화관 리스트 어노테이션
         for i in theaterData.theater {
             let theaterAnnotation = MKPointAnnotation()
             theaterAnnotation.title = i.theaterTitle
@@ -47,17 +55,24 @@ class MovieMapViewController: UIViewController {
             //moviewMapView.addAnnotations(annotations) ?
         }
         
-        let annotation = MKPointAnnotation()
-        annotation.title = "HERE!!!"
-        annotation.coordinate = location
-        movieMapView.addAnnotation(annotation) //Anootations: 한 번에 여러개 꽂을 ㅜㅅ 이다.
-        
-        //맴뷰 어노테이션을 삭제하고자 할 때
-        //맴뷰에서 어노티ㅣㅇ션 관련 정보를 가져올 수 있다.
-//        let annotations = movieMapView.annotations
-//        movieMapView.removeAnnotations(annotations)
-
         checkUserLoactionServicesAuthorization()
+        
+    
+    }
+    @IBAction func currentLocationButtonClicked(_ sender: UIButton) {
+        checkUserLoactionServicesAuthorization()
+        if authorization != true {
+        showAlert(title: "설정으로 이동", message: "권한 허용해주세요", okTitle: "설정으로 이동") {
+            guard let url = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(url){
+                UIApplication.shared.open(url) { success in
+                    print("잘 열렸다\(success)")
+                }
+            }
+        }
+        }
     }
 }
 
@@ -82,6 +97,7 @@ extension MovieMapViewController: CLLocationManagerDelegate {
             checkCurrentLocationAuthorization(authorizationStatus)
         } else {
             print("iOS 위치 서비스를 켜주세요 alert")
+            
         }
     }
     
@@ -95,10 +111,12 @@ extension MovieMapViewController: CLLocationManagerDelegate {
             locationManager.startUpdatingLocation() //-> didUpdatedLocations
         case .restricted, .denied:
             print("Denied, 설정으로 유도")
+     
         case .authorizedWhenInUse:
             locationManager.startUpdatingLocation() //-> didUpdatedLocations
         case .authorizedAlways:
             print("always")
+            authorization = true
         @unknown default:
             print("default")
         }
@@ -111,6 +129,7 @@ extension MovieMapViewController: CLLocationManagerDelegate {
 //
             case .reducedAccuracy:
                 print("reduce")
+                
             @unknown default:
                 print("default")
             }
