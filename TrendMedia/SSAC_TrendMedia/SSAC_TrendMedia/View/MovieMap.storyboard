@@ -43,10 +43,17 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="GyA-ld-a5l" secondAttribute="bottom" constant="20" id="sAL-ib-ao8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="기흥구 마북동" id="MZE-OZ-XlS"/>
+                    <navigationItem key="navigationItem" title="기흥구 마북동" id="MZE-OZ-XlS">
+                        <barButtonItem key="rightBarButtonItem" title="Filter" id="2GO-gj-eIq">
+                            <connections>
+                                <action selector="filterButtonClicked:" destination="Y6W-OH-hqX" id="uv8-8W-YFq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="currentLocationButton" destination="GyA-ld-a5l" id="qvg-IQ-BQD"/>
                         <outlet property="currnetLocationTitle" destination="MZE-OZ-XlS" id="0Yo-5e-Nxa"/>
+                        <outlet property="filterButton" destination="2GO-gj-eIq" id="l9n-zH-odf"/>
                         <outlet property="movieMapView" destination="doU-UP-wbh" id="bCn-ge-nX1"/>
                     </connections>
                 </viewController>

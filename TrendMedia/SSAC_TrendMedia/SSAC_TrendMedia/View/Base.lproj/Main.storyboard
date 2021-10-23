@@ -119,7 +119,7 @@
             </objects>
             <point key="canvasLocation" x="1468" y="-340"/>
         </scene>
-        <!--TREND MEDIA-->
+        <!--MY MEDIA-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="MovieTrendViewController" id="BYZ-38-t0r" customClass="MovieTrendViewController" customModule="SSAC_TrendMedia" customModuleProvider="target" sceneMemberID="viewController">
@@ -144,7 +144,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MZf-5X-G3w">
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MZf-5X-G3w">
                                             <rect key="frame" x="49" y="82" width="316" height="105"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hWk-Qa-56d">
@@ -378,8 +378,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="TREND MEDIA" id="9YT-rI-qpe">
-                        <barButtonItem key="backBarButtonItem" title="검색" id="vHp-RJ-yDD"/>
+                    <navigationItem key="navigationItem" title="MY MEDIA" id="9YT-rI-qpe">
                         <leftBarButtonItems>
                             <barButtonItem image="list.dash" catalog="system" id="thS-Wb-RRJ">
                                 <color key="tintColor" systemColor="labelColor"/>

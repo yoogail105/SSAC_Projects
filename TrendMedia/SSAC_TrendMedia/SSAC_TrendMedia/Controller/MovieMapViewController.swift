@@ -11,18 +11,24 @@ import CoreLocation
 import CoreLocationUI
 
 class MovieMapViewController: UIViewController {
-    var authorization = false
+    
+    
+    // MARK: - @IBOutlets
     @IBOutlet weak var currentLocationButton: UIButton!
     
     @IBOutlet weak var currnetLocationTitle: UINavigationItem!
     
     @IBOutlet weak var movieMapView: MKMapView!
-    let theaterData = TheaterData()
-   
-   
-    let  locationManager = CLLocationManager()
-   
     
+    @IBOutlet weak var filterButton: UIBarButtonItem!
+    
+    let theaterData = TheaterData()
+    let  locationManager = CLLocationManager()
+    var authorization = false
+    var cgvAnnotations: [MKAnnotation] = []
+    var lotteCinemaAnnotations: [MKAnnotation] = []
+    var megaBoxAnnotations : [MKAnnotation] = []
+    var allAnnotations:[MKAnnotation] = []
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +36,7 @@ class MovieMapViewController: UIViewController {
         // 1. CoreLocation delegate위임
         locationManager.delegate = self
         movieMapView.delegate = self
+
         
         // 로케이션의 기준점 설정하기
         // 서울시청: 37.566403559824955, 126.97794018074802
@@ -43,38 +50,123 @@ class MovieMapViewController: UIViewController {
         annotation.title = "서울시청"
         annotation.coordinate = location
         movieMapView.addAnnotation(annotation)
-    
         
-        // MARK: - 전체 영화관 리스트 어노테이션
+        
+        // MARK: - 전체 영화관 리스트 어노테이션 -> 어노테이션 분류
         for i in theaterData.theater {
+            
             let theaterAnnotation = MKPointAnnotation()
             theaterAnnotation.title = i.theaterTitle
             print(i.theaterTitle)
             theaterAnnotation.coordinate = CLLocationCoordinate2D(latitude: i.location.0, longitude: i.location.1)
+            
+            switch i.type {
+            case .megabox:
+                print("\(i.type)는 메가박스")
+                megaBoxAnnotations.append(theaterAnnotation)
+                
+                
+            case .lotteCinema:
+                print("\(i.type)는 롯데")
+                lotteCinemaAnnotations.append(theaterAnnotation)
+            case .cgv:
+                print("\(i.type)는 cgv")
+                cgvAnnotations.append(theaterAnnotation)
+            }
+            
             movieMapView.addAnnotation(theaterAnnotation)
-            //moviewMapView.addAnnotations(annotations) ?
+            allAnnotations.append(theaterAnnotation)
         }
+        // 전체 allAnnotation 넣어두기
         
+
         checkUserLoactionServicesAuthorization()
         
-    
+        // MARK: - UI Setting
+        
+        navigationItem.backBarButtonItem?.tintColor = .white
+        currentLocationButton.tintColor = .white
+        filterButton.tintColor = .black
+        
+        
     }
     @IBAction func currentLocationButtonClicked(_ sender: UIButton) {
         checkUserLoactionServicesAuthorization()
         if authorization != true {
-        showAlert(title: "설정으로 이동", message: "권한 허용해주세요", okTitle: "설정으로 이동") {
+            locationSettingAlert()
+        }
+    }
+    
+    func locationSettingAlert() {
+        showAlert(title: "위치 서비스를 사용할 수 없습니다.", message: "지도에서 내 위치를 확인하여 주변 영화관 정보를 얻기 위해 '설정 > 개인정보 보호'에서 위치 서비스를 켜주세요.", okTitle: "설정으로 이동") {
             guard let url = URL(string: UIApplication.openSettingsURLString) else {
                 return
             }
             if UIApplication.shared.canOpenURL(url){
                 UIApplication.shared.open(url) { success in
-                    print("잘 열렸다\(success)")
+                    print("설정으로 이동했습니다.")
                 }
             }
+            
         }
+    } //: locationSettingAlert
+    
+    func hideAllAnnotation(deselectedAnnotations: [MKAnnotation]) {
+        for annotaton in deselectedAnnotations {
+            self.movieMapView.view(for: annotaton)?.isHidden = true
         }
     }
-}
+   // func showAllAnnotation(selectedAnnotations: [MKAnnotation], hideMegabox: Bool, hideLottecinema: Bool, hideCgv: Bool)
+    func showAllAnnotation() {
+        for annotaton in allAnnotations {
+            self.movieMapView.view(for: annotaton)?.isHidden = false
+        }
+    }
+        
+   func showAllAnnotation(selectedAnnotations: [MKAnnotation]) {
+       //super.showAllAnnotation
+        for annotaton in allAnnotations {
+            self.movieMapView.view(for: annotaton)?.isHidden = true
+        }
+    
+        for selectedAnnotation in selectedAnnotations {
+            self.movieMapView.view(for: selectedAnnotation)?.isHidden = false
+        }
+        
+    }
+   
+    // MARK: - FilterButtonClicked
+    @IBAction func filterButtonClicked(_ sender: UIBarButtonItem) {
+       
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let megabox = UIAlertAction(title: "메가박스", style: .default) { _ in
+            self.showAllAnnotation(selectedAnnotations: self.megaBoxAnnotations)
+        }
+        let lotteCinema = UIAlertAction(title: "롯데시네마", style: .default) { _ in
+            self.showAllAnnotation(selectedAnnotations: self.lotteCinemaAnnotations)
+        }
+        let cgv = UIAlertAction(title: "CGV", style: .default) { _ in
+            self.showAllAnnotation(selectedAnnotations: self.cgvAnnotations)
+        }
+        
+        let all = UIAlertAction(title: "전체보기", style: .default) { _ in
+            self.showAllAnnotation()
+        }
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+    
+        alert.addAction(megabox)
+        alert.addAction(lotteCinema)
+        alert.addAction(cgv)
+        alert.addAction(all)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
+    }
+
+    
+} //: MovieMapViewController
 
 // MARK: - MapView + Extension
 
@@ -106,14 +198,18 @@ extension MovieMapViewController: CLLocationManagerDelegate {
         
         switch authorizationStatus {
         case .notDetermined:
+            authorization = false
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation() //-> didUpdatedLocations
         case .restricted, .denied:
+            authorization = false
             print("Denied, 설정으로 유도")
-     
+            
         case .authorizedWhenInUse:
+            authorization = true
             locationManager.startUpdatingLocation() //-> didUpdatedLocations
+            
         case .authorizedAlways:
             print("always")
             authorization = true
@@ -125,8 +221,8 @@ extension MovieMapViewController: CLLocationManagerDelegate {
             let accurancyState = locationManager.accuracyAuthorization
             
             switch accurancyState {
-//            case .fullAccuracy:
-//
+                //            case .fullAccuracy:
+                //
             case .reducedAccuracy:
                 print("reduce")
                 
@@ -155,8 +251,8 @@ extension MovieMapViewController: CLLocationManagerDelegate {
             
             //10.위치업데이트 기준
             locationManager.stopUpdatingLocation()
-
-        
+            
+            
         } else { // 주소가 없다면
             print("Loaction Cannot Find: 설정 얼럿 띄우기")
         }
@@ -185,3 +281,4 @@ extension MovieMapViewController: MKMapViewDelegate {
     }
     
 }
+

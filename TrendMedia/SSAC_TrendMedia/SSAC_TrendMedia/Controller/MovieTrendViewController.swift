@@ -25,7 +25,11 @@ class MovieTrendViewController: UIViewController {
         trendMediaTableView.dataSource = self
         
         menuButtonView.layer.cornerRadius = 10
-        menuButtonView.layer.masksToBounds = true
+        menuButtonView.layer.shadowOpacity = 0.5
+        menuButtonView.layer.shadowRadius = 10
+        menuButtonView.layer.shadowOffset = .init(width: 0, height: -5)
+        menuButtonView.layer.shadowColor = UIColor.gray.cgColor
+        //menuButtonView.layer.masksToBounds = true
     } //: ViewDidLoad
     
     
@@ -97,7 +101,7 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource {
         cell.movieCardView.layer.masksToBounds = true
         cell.movieCardView.layer.borderWidth = 1.0
         cell.movieCardView.layer.shadowRadius = 10
-        
+        cell.selectionStyle = .none
         
         return cell
         
@@ -128,7 +132,5 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
-    
-    
-    
+
 }

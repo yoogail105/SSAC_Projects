@@ -19,9 +19,8 @@ extension UIViewController {
         //handler: 버튼 눌렀을 때 뭐 해줄래?
         let ok = UIAlertAction(title: okTitle, style:.default) { _ in //와일드카드
             print("확인 버튼 눌렀음")
-            
+            //확인버튼 누르면 할 동작 구현
             okAction()
-            //함수 안에 함수 안에 함tn
         }
                 
         alert.addAction(cancel)
@@ -34,4 +33,3 @@ extension UIViewController {
         
     }
 }
-
