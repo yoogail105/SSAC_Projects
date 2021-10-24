@@ -15,11 +15,8 @@ class MovieMapViewController: UIViewController {
     
     // MARK: - @IBOutlets
     @IBOutlet weak var currentLocationButton: UIButton!
-    
     @IBOutlet weak var currnetLocationTitle: UINavigationItem!
-    
     @IBOutlet weak var movieMapView: MKMapView!
-    
     @IBOutlet weak var filterButton: UIBarButtonItem!
     
     let theaterData = TheaterData()
@@ -36,7 +33,7 @@ class MovieMapViewController: UIViewController {
         // 1. CoreLocation delegate위임
         locationManager.delegate = self
         movieMapView.delegate = self
-
+        
         
         // 로케이션의 기준점 설정하기
         // 서울시청: 37.566403559824955, 126.97794018074802
@@ -62,31 +59,28 @@ class MovieMapViewController: UIViewController {
             
             switch i.type {
             case .megabox:
-                print("\(i.type)는 메가박스")
                 megaBoxAnnotations.append(theaterAnnotation)
-                
-                
             case .lotteCinema:
-                print("\(i.type)는 롯데")
                 lotteCinemaAnnotations.append(theaterAnnotation)
             case .cgv:
-                print("\(i.type)는 cgv")
                 cgvAnnotations.append(theaterAnnotation)
             }
             
             movieMapView.addAnnotation(theaterAnnotation)
+            // 전체 allAnnotation 넣어두기
             allAnnotations.append(theaterAnnotation)
         }
-        // 전체 allAnnotation 넣어두기
         
-
+        
         checkUserLoactionServicesAuthorization()
         
         // MARK: - UI Setting
         
-        navigationItem.backBarButtonItem?.tintColor = .white
-        currentLocationButton.tintColor = .white
+        navigationItem.backBarButtonItem?.tintColor = UIColor.white
+      //  navigationItem.title = getCurrentAddress(location: <#T##CLLocation#>)
+        currentLocationButton.tintColor = .green
         filterButton.tintColor = .black
+        
         
         
     }
@@ -116,28 +110,27 @@ class MovieMapViewController: UIViewController {
             self.movieMapView.view(for: annotaton)?.isHidden = true
         }
     }
-   // func showAllAnnotation(selectedAnnotations: [MKAnnotation], hideMegabox: Bool, hideLottecinema: Bool, hideCgv: Bool)
+    // func showAllAnnotation(selectedAnnotations: [MKAnnotation], hideMegabox: Bool, hideLottecinema: Bool, hideCgv: Bool)
     func showAllAnnotation() {
         for annotaton in allAnnotations {
             self.movieMapView.view(for: annotaton)?.isHidden = false
         }
     }
-        
-   func showAllAnnotation(selectedAnnotations: [MKAnnotation]) {
-       //super.showAllAnnotation
+    
+    func showAllAnnotation(selectedAnnotations: [MKAnnotation]) {
+        //super.showAllAnnotation
         for annotaton in allAnnotations {
             self.movieMapView.view(for: annotaton)?.isHidden = true
         }
-    
+        
         for selectedAnnotation in selectedAnnotations {
             self.movieMapView.view(for: selectedAnnotation)?.isHidden = false
         }
-        
     }
-   
+    
     // MARK: - FilterButtonClicked
     @IBAction func filterButtonClicked(_ sender: UIBarButtonItem) {
-       
+        
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let megabox = UIAlertAction(title: "메가박스", style: .default) { _ in
@@ -155,7 +148,7 @@ class MovieMapViewController: UIViewController {
         }
         
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-    
+        
         alert.addAction(megabox)
         alert.addAction(lotteCinema)
         alert.addAction(cgv)
@@ -164,7 +157,38 @@ class MovieMapViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
-
+    
+    // 위경도 -> 한국어 주소 변환
+    func getCurrentAddress(location: CLLocation) {
+        let geoCoder: CLGeocoder = CLGeocoder()
+        let location: CLLocation = location
+        
+        let locale = Locale(identifier: "Ko-kr")
+        
+        geoCoder.reverseGeocodeLocation(location, preferredLocale: locale, completionHandler:  { (placemark, error)-> Void in
+            guard error == nil, let place = placemark?.first else {
+                print("주소 설정 불가능")
+                return
+            }
+            
+            if let administrativeArea = place.administrativeArea {
+                print(administrativeArea)
+            }
+            
+            if let locality =  place.locality {
+                print(locality)
+            }
+            
+            if let subLocality = place.subLocality {
+                print(subLocality)
+            }
+            if let subThoroughfare = place.subThoroughfare {
+                print(subThoroughfare)
+            }
+        })
+        
+    }
+    
     
 } //: MovieMapViewController
 
@@ -172,7 +196,7 @@ class MovieMapViewController: UIViewController {
 
 extension MovieMapViewController: CLLocationManagerDelegate {
     
-    // MARK: - 9. ios별 위치 서비스 여부
+    // MARK: - 9. ios별 위치 서비스 여부: checkUserLocationStatus
     func checkUserLoactionServicesAuthorization() {
         
         let authorizationStatus: CLAuthorizationStatus
@@ -232,7 +256,7 @@ extension MovieMapViewController: CLLocationManagerDelegate {
         }
     }
     
-    // MARK: - 1.사용자가 위치 허용을 했다면 didUpdateLocations
+    // MARK: - 1. didUpdateLocations: 사용자가 위치 허용을 했다면
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(#function)
@@ -248,10 +272,12 @@ extension MovieMapViewController: CLLocationManagerDelegate {
             let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
             let region = MKCoordinateRegion(center: coordinate, span: span)
             movieMapView.setRegion(region, animated: true)
-            
+                
+          //  getCurrentAddress(location: region )
             //10.위치업데이트 기준
             locationManager.stopUpdatingLocation()
             
+        
             
         } else { // 주소가 없다면
             print("Loaction Cannot Find: 설정 얼럿 띄우기")
@@ -273,12 +299,11 @@ extension MovieMapViewController: CLLocationManagerDelegate {
         //check
     }
     
-}
+    
+}//: extension MovieMapViewController: CLLocationManagerDelegate
 
 extension MovieMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print("영화관 선택!")
     }
-    
 }
 

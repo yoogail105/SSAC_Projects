@@ -14,23 +14,38 @@ class MovieTrendViewController: UIViewController {
     //data
     let tvShowData = TvShowData()
     
-    @IBOutlet weak var menuButtonView: UIView!
+    @IBOutlet weak var shadowMenuView: UIView!
+    @IBOutlet weak var menuButtonsView: UIView!
+    
     
     @IBOutlet weak var trendMediaTableView: UITableView!
     
     // MARK: - ViewdidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         trendMediaTableView.delegate = self
         trendMediaTableView.dataSource = self
         
-        menuButtonView.layer.cornerRadius = 10
-        menuButtonView.layer.shadowOpacity = 0.5
-        menuButtonView.layer.shadowRadius = 10
-        menuButtonView.layer.shadowOffset = .init(width: 0, height: -5)
-        menuButtonView.layer.shadowColor = UIColor.gray.cgColor
-        //menuButtonView.layer.masksToBounds = true
+//
+//        menuButtonView.translatesAutoresizingMaskIntoConstraints = false
+//        menuButtonView.layer.cornerRadius = 10
+//        menuButtonView.layer.shadowColor = UIColor.gray.cgColor
+//        menuButtonView.layer.shadowOpacity = 1.0
+//        menuButtonView.layer.shadowOffset = CGSize(width: 3, height:3 )
+//        menuButtonView.layer.shadowRadius = 10
+//        menuButtonView.layer.masksToBounds = false
+        // MARK: - UISetting
+        shadowMenuView.layer.cornerRadius = 10
+        shadowMenuView.layer.shadowColor = UIColor.black
+            .cgColor
+        shadowMenuView.layer.shadowOpacity = 0.5
+        shadowMenuView.layer.shadowRadius = 10
+        menuButtonsView.layer.cornerRadius = 10
+        menuButtonsView.layer.masksToBounds = true
+        
     } //: ViewDidLoad
+    
     
     
     
@@ -133,4 +148,14 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
 
+}
+extension UIView {
+    
+    public func addShadowToView(shadow_color: UIColor,offset: CGSize,shadow_radius: CGFloat,shadow_opacity: Float,corner_radius: CGFloat) {
+        self.layer.shadowColor = shadow_color.cgColor
+        self.layer.shadowOpacity = shadow_opacity
+        self.layer.shadowOffset = offset
+        self.layer.shadowRadius = shadow_radius
+        self.layer.cornerRadius = corner_radius
+    }
 }
