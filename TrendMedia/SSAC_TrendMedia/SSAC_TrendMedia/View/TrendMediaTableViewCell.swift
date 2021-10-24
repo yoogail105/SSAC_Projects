@@ -15,6 +15,7 @@ class TrendMediaTableViewCell: UITableViewCell {
     
     // IBOutlet
     
+    @IBOutlet weak var textBoxView: UIView!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var castNamesLabel: UILabel!
@@ -24,14 +25,24 @@ class TrendMediaTableViewCell: UITableViewCell {
     
     @IBOutlet weak var movieCardView: UIView!
     
+    @IBOutlet weak var shadowMovieCardView: UIView!
     @IBOutlet weak var rateLabel: UILabel!
     
+    @IBOutlet weak var chevronView: UIView!
+    @IBOutlet weak var blanckView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
+   /*
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0.0))
+    }
+    */
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

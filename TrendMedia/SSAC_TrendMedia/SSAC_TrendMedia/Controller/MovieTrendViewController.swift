@@ -11,6 +11,7 @@ class MovieTrendViewController: UIViewController {
     
     static let identifier = "MovieTrendViewController"
     
+    @IBOutlet weak var trendMediaTableView: UITableView!
     //data
     let tvShowData = TvShowData()
     
@@ -18,7 +19,10 @@ class MovieTrendViewController: UIViewController {
     @IBOutlet weak var menuButtonsView: UIView!
     
     
-    @IBOutlet weak var trendMediaTableView: UITableView!
+    
+//    @IBOutlet weak var shadowTrendMediaView: UIView!
+    
+  //  @IBOutlet weak var movieCardView: UIView!
     
     // MARK: - ViewdidLoad
     override func viewDidLoad() {
@@ -36,18 +40,29 @@ class MovieTrendViewController: UIViewController {
 //        menuButtonView.layer.shadowRadius = 10
 //        menuButtonView.layer.masksToBounds = false
         // MARK: - UISetting
-        shadowMenuView.layer.cornerRadius = 10
-        shadowMenuView.layer.shadowColor = UIColor.black
-            .cgColor
-        shadowMenuView.layer.shadowOpacity = 0.5
-        shadowMenuView.layer.shadowRadius = 10
-        menuButtonsView.layer.cornerRadius = 10
-        menuButtonsView.layer.masksToBounds = true
+        shadowViewSetting(shadowView: shadowMenuView, contentView: menuButtonsView)
+//        shadowMenuView.layer.cornerRadius = 10
+//        shadowMenuView.layer.shadowColor = UIColor.black
+//            .cgColor
+//        shadowMenuView.layer.shadowOpacity = 0.5
+//        shadowMenuView.layer.shadowRadius = 10
+//        menuButtonsView.layer.cornerRadius = 10
+//        menuButtonsView.layer.masksToBounds = true
+//
+//        shadowTrendMediaTableView.layer.cornerRadius = 10
         
     } //: ViewDidLoad
     
     
-    
+    func shadowViewSetting(shadowView: UIView, contentView: UIView) {
+        shadowView.layer.cornerRadius = 10
+        shadowView.layer.shadowColor = UIColor.black
+            .cgColor
+        shadowView.layer.shadowOpacity = 0.5
+        shadowView.layer.shadowRadius = 10
+        contentView.layer.cornerRadius = 10
+        contentView.layer.masksToBounds = true
+    }
     
     // MARK: - Navigation: to Search Page
     
@@ -82,7 +97,7 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource {
         
         //tvShowData에서 tvShow라는 tuple(?)의 갯수
         return tvShowData.tvShow.count
-        print(tvShowData.tvShow.count)
+      
     }
     
     
@@ -100,6 +115,7 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource {
         
         let row = tvShowData.tvShow[indexPath.row]
         
+        cell.backgroundColor = nil
         // 데이터의 title과 asset의 이미지 이름 같게 만들어 주기
         let posterImageName = row.title.replacingOccurrences(of: " ", with: "_").lowercased()
         cell.posterImageView.image = UIImage(named: posterImageName)
@@ -112,21 +128,21 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource {
         cell.castNamesLabel.textColor = .lightGray
         cell.rateLabel.text = String(row.rate)
         cell.rateLabel.textColor = .black
-        cell.movieCardView.layer.cornerRadius = 10
-        cell.movieCardView.layer.masksToBounds = true
-        cell.movieCardView.layer.borderWidth = 1.0
-        cell.movieCardView.layer.shadowRadius = 10
+        //cell.movieCardView.layer.cornerRadius = 10
+        //cell.movieCardView.layer.masksToBounds = true
+        //cell.movieCardView.layer.borderWidth = 1.0
+      // cell.movieCardView.layer.shadowRadius = 10
         cell.selectionStyle = .none
+        shadowViewSetting(shadowView: cell.shadowMovieCardView, contentView: cell.movieCardView)
         
+    
         return cell
         
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        
-        
-        return UIScreen.main.bounds.height / 2
+
+        return UIScreen.main.bounds.height / 1.8
     }
     
     
