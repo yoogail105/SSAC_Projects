@@ -31,26 +31,9 @@ class MovieTrendViewController: UIViewController {
         trendMediaTableView.delegate = self
         trendMediaTableView.dataSource = self
         
-//
-//        menuButtonView.translatesAutoresizingMaskIntoConstraints = false
-//        menuButtonView.layer.cornerRadius = 10
-//        menuButtonView.layer.shadowColor = UIColor.gray.cgColor
-//        menuButtonView.layer.shadowOpacity = 1.0
-//        menuButtonView.layer.shadowOffset = CGSize(width: 3, height:3 )
-//        menuButtonView.layer.shadowRadius = 10
-//        menuButtonView.layer.masksToBounds = false
         // MARK: - UISetting
         shadowViewSetting(shadowView: shadowMenuView, contentView: menuButtonsView)
-//        shadowMenuView.layer.cornerRadius = 10
-//        shadowMenuView.layer.shadowColor = UIColor.black
-//            .cgColor
-//        shadowMenuView.layer.shadowOpacity = 0.5
-//        shadowMenuView.layer.shadowRadius = 10
-//        menuButtonsView.layer.cornerRadius = 10
-//        menuButtonsView.layer.masksToBounds = true
-//
-//        shadowTrendMediaTableView.layer.cornerRadius = 10
-        
+
     } //: ViewDidLoad
     
     
@@ -97,7 +80,7 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource {
         
         //tvShowData에서 tvShow라는 tuple(?)의 갯수
         return tvShowData.tvShow.count
-      
+       
     }
     
     
@@ -128,10 +111,6 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource {
         cell.castNamesLabel.textColor = .lightGray
         cell.rateLabel.text = String(row.rate)
         cell.rateLabel.textColor = .black
-        //cell.movieCardView.layer.cornerRadius = 10
-        //cell.movieCardView.layer.masksToBounds = true
-        //cell.movieCardView.layer.borderWidth = 1.0
-      // cell.movieCardView.layer.shadowRadius = 10
         cell.selectionStyle = .none
         shadowViewSetting(shadowView: cell.shadowMovieCardView, contentView: cell.movieCardView)
         
@@ -159,19 +138,10 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource {
             print("Error")
             return
         }
+        //vc.selsctedMovie = tvShowData.tvShow[indexPath.row]
         //3. push
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
 
-}
-extension UIView {
-    
-    public func addShadowToView(shadow_color: UIColor,offset: CGSize,shadow_radius: CGFloat,shadow_opacity: Float,corner_radius: CGFloat) {
-        self.layer.shadowColor = shadow_color.cgColor
-        self.layer.shadowOpacity = shadow_opacity
-        self.layer.shadowOffset = offset
-        self.layer.shadowRadius = shadow_radius
-        self.layer.cornerRadius = corner_radius
-    }
 }
