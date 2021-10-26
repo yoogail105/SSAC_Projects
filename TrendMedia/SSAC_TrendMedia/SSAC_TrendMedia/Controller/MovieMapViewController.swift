@@ -193,7 +193,7 @@ class MovieMapViewController: UIViewController {
 } //: MovieMapViewController
 
 // MARK: - MapView + Extension
-
+// MARK: - locationManagerDelegate
 extension MovieMapViewController: CLLocationManagerDelegate {
     
     // MARK: - 9. ios별 위치 서비스 여부: checkUserLocationStatus
