@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Detect Text View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="DetectTextViewController" customModule="Detext" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="m93-Rt-41l">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exampleImage01" translatesAutoresizingMaskIntoConstraints="NO" id="F9b-pG-LXx">
+                                <rect key="frame" x="20" y="64" width="374" height="498.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="F9b-pG-LXx" secondAttribute="height" multiplier="3:4" id="m6e-oY-SXZ"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DlM-cn-XDk">
+                                <rect key="frame" x="100" y="602.5" width="214" height="44"/>
+                                <color key="backgroundColor" red="0.67843137249999996" green="0.65490196079999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="NZ7-f8-PoY"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="DETEXT!">
+                                    <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="20"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="detextButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="48e-F0-94M"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmz-DG-DmJ">
+                                <rect key="frame" x="20" y="686.5" width="374" height="155.5"/>
+                                <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DlM-cn-XDk" firstAttribute="top" secondItem="F9b-pG-LXx" secondAttribute="bottom" constant="40" id="0aI-F4-XkT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lmz-DG-DmJ" secondAttribute="trailing" constant="20" id="3hX-iM-24a"/>
+                            <constraint firstItem="F9b-pG-LXx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="73q-b2-N8M"/>
+                            <constraint firstItem="m93-Rt-41l" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="CTf-RM-kdB"/>
+                            <constraint firstAttribute="bottom" secondItem="m93-Rt-41l" secondAttribute="bottom" id="CaV-aU-zxU"/>
+                            <constraint firstItem="F9b-pG-LXx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="EcE-kx-ra1"/>
+                            <constraint firstItem="DlM-cn-XDk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="Iwf-jX-rN0"/>
+                            <constraint firstItem="lmz-DG-DmJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="KsT-mB-bUS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="m93-Rt-41l" secondAttribute="trailing" id="UAm-gG-eGe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DlM-cn-XDk" secondAttribute="trailing" constant="100" id="aVp-gf-Szr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lmz-DG-DmJ" secondAttribute="bottom" constant="20" id="cAl-IR-T1Z"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="F9b-pG-LXx" secondAttribute="trailing" constant="20" id="cbB-ci-XFZ"/>
+                            <constraint firstItem="m93-Rt-41l" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tJG-EK-kM4"/>
+                            <constraint firstItem="lmz-DG-DmJ" firstAttribute="top" secondItem="DlM-cn-XDk" secondAttribute="bottom" constant="40" id="wVd-jQ-vFS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detextButton" destination="DlM-cn-XDk" id="yaf-dl-jdi"/>
+                        <outlet property="resultLabel" destination="lmz-DG-DmJ" id="RKL-7P-n5E"/>
+                        <outlet property="targetImage" destination="F9b-pG-LXx" id="TPy-Bt-oVj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="28.985507246376812" y="83.705357142857139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background" width="4447" height="6670"/>
+        <image name="exampleImage01" width="439" height="783"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
