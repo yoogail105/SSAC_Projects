@@ -20,6 +20,10 @@
 		27226096271CB1C600C8355F /* TrendMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27226095271CB1C600C8355F /* TrendMediaTableViewCell.swift */; };
 		27226098271CB54700C8355F /* CastInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27226097271CB54700C8355F /* CastInfoViewController.swift */; };
 		2735780E2722B29600EBB52F /* Alert+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2735780D2722B29600EBB52F /* Alert+Extension.swift */; };
+		2745F3EA27294E7D005EF12A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2745F3E927294E7D005EF12A /* Alamofire */; };
+		2745F3ED27294EDF005EF12A /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 2745F3EC27294EDF005EF12A /* SwiftyJSON */; };
+		2745F3EF2729578A005EF12A /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2745F3EE2729578A005EF12A /* SearchTableViewCell.swift */; };
+		2745F3F1272968B0005EF12A /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2745F3F0272968B0005EF12A /* MovieModel.swift */; };
 		27B856CE2720C56A00F3EF99 /* MovieMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27B856CD2720C56A00F3EF99 /* MovieMap.storyboard */; };
 		27B856D02720C58B00F3EF99 /* MovieMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B856CF2720C58B00F3EF99 /* MovieMapViewController.swift */; };
 		27B856D22720D65D00F3EF99 /* TheaterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B856D12720D65D00F3EF99 /* TheaterData.swift */; };
@@ -50,6 +54,8 @@
 		27226095271CB1C600C8355F /* TrendMediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendMediaTableViewCell.swift; sourceTree = "<group>"; };
 		27226097271CB54700C8355F /* CastInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastInfoViewController.swift; sourceTree = "<group>"; };
 		2735780D2722B29600EBB52F /* Alert+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Extension.swift"; sourceTree = "<group>"; };
+		2745F3EE2729578A005EF12A /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		2745F3F0272968B0005EF12A /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		27B856CD2720C56A00F3EF99 /* MovieMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MovieMap.storyboard; sourceTree = "<group>"; };
 		27B856CF2720C58B00F3EF99 /* MovieMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMapViewController.swift; sourceTree = "<group>"; };
 		27B856D12720D65D00F3EF99 /* TheaterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterData.swift; sourceTree = "<group>"; };
@@ -68,7 +74,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2745F3ED27294EDF005EF12A /* SwiftyJSON in Frameworks */,
 				27BCEA542725E03700ABA212 /* Kingfisher in Frameworks */,
+				2745F3EA27294E7D005EF12A /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +125,7 @@
 		27EFF8FF271F2A1F004B47A0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2745F3EE2729578A005EF12A /* SearchTableViewCell.swift */,
 				27EFF905271F4000004B47A0 /* BookInformationCollectionViewCell.swift */,
 				27BCEA572725E24C00ABA212 /* CastInfoTableViewCell.swift */,
 				27BCEA582725E24C00ABA212 /* CastInfoTableViewCell.xib */,
@@ -157,6 +166,7 @@
 		27EFF902271F2A52004B47A0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2745F3F0272968B0005EF12A /* MovieModel.swift */,
 				2722608B271CA70C00C8355F /* TvShow.swift */,
 				27B856D32720D76600F3EF99 /* Theater.swift */,
 			);
@@ -181,6 +191,8 @@
 			name = SSAC_TrendMedia;
 			packageProductDependencies = (
 				27BCEA532725E03700ABA212 /* Kingfisher */,
+				2745F3E927294E7D005EF12A /* Alamofire */,
+				2745F3EC27294EDF005EF12A /* SwiftyJSON */,
 			);
 			productName = SSAC_TrendMedia;
 			productReference = 27226072271C9C4E00C8355F /* SSAC_TrendMedia.app */;
@@ -212,6 +224,8 @@
 			mainGroup = 27226069271C9C4E00C8355F;
 			packageReferences = (
 				27BCEA522725E03700ABA212 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				2745F3E827294E7D005EF12A /* XCRemoteSwiftPackageReference "Alamofire" */,
+				2745F3EB27294EDE005EF12A /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 27226073271C9C4E00C8355F /* Products */;
 			projectDirPath = "";
@@ -252,7 +266,9 @@
 				2722607A271C9C4E00C8355F /* ViewController.swift in Sources */,
 				27B856D42720D76600F3EF99 /* Theater.swift in Sources */,
 				2722608A271C9CAF00C8355F /* tvShowData.swift in Sources */,
+				2745F3F1272968B0005EF12A /* MovieModel.swift in Sources */,
 				27226090271CAAD700C8355F /* MovieTrendViewController.swift in Sources */,
+				2745F3EF2729578A005EF12A /* SearchTableViewCell.swift in Sources */,
 				27EFF907271F4000004B47A0 /* BookInformationCollectionViewCell.swift in Sources */,
 				27226098271CB54700C8355F /* CastInfoViewController.swift in Sources */,
 				2722608C271CA70C00C8355F /* TvShow.swift in Sources */,
@@ -482,6 +498,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2745F3E827294E7D005EF12A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		2745F3EB27294EDE005EF12A /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.0;
+			};
+		};
 		27BCEA522725E03700ABA212 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -493,6 +525,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2745F3E927294E7D005EF12A /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2745F3E827294E7D005EF12A /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		2745F3EC27294EDF005EF12A /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2745F3EB27294EDE005EF12A /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
 		27BCEA532725E03700ABA212 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 27BCEA522725E03700ABA212 /* XCRemoteSwiftPackageReference "Kingfisher" */;
