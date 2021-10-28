@@ -8,7 +8,7 @@
 import Foundation
 
 struct APIKey {
-    static let KAKAO = "KakaoAK 5b874be3690eb3c072a7b72400fc147c"
+    static let KAKAO = Bundle.main.apiKey
 }
 
 struct Endpoint {
