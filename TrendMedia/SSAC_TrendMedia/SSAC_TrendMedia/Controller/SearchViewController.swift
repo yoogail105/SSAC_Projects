@@ -10,13 +10,31 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UITableViewDataSourcePrefetching {
+    
+    // 필수: 셀이 화면에 보이기 전에 필요한 리소스를 미리 다운 받는 기능
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            if movieData.count - 1 == indexPath.row && movieData.count < totalCount {
+                startPage += 10
+                fetchMovieData()
+                print("prefetch: \(indexPath)")
+            }
+        }
+    }
+    
+    // 옵션: 취소
+    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+            print("취소: \(indexPaths)")
+    }
     @IBOutlet weak var searchTableView: UITableView!
     
     @IBOutlet weak var searchBar: UISearchBar!
     static let identifier = "SearchViewController"
     
     var movieData: [MovieModel] = []
+    var startPage = 1
+    var totalCount = 0
     
     // MARK: - viewdidLoad
     override func viewDidLoad() {
@@ -25,6 +43,7 @@ class SearchViewController: UIViewController {
         
         searchTableView.delegate = self
         searchTableView.dataSource = self
+        searchTableView.prefetchDataSource = self
         //
         //
         //        searchBar.delegate = self
@@ -54,19 +73,26 @@ class SearchViewController: UIViewController {
         // api 숨겨주는 것 체크!!
         
         
-        if let query = "스파이더맨".addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) {
-            let url = "https://openapi.naver.com/v1/search/movie.json?query=\(query)&display=10&start=1"
+        if let query = "사랑".addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) {
+            let url = "https://openapi.naver.com/v1/search/movie.json?query=\(query)&display=10&start=\(startPage)"
             
             let header: HTTPHeaders = [
                 "X-Naver-Client-Id": "TiyeZP9lDqhLOv0v4haf",
                 "X-Naver-Client-Secret": "kIOQaeJbEz"
             ]
             
+            //비동기 처리하기
+            DispatchQueue.global().async {
+                
+            }
+            
             AF.request(url, method: .get, headers: header).validate().responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
                     print("JSON: \(json)")
+                    
+                    self.totalCount = json["total"].intValue
                     
                     for item in json["items"].arrayValue {
                        
@@ -79,8 +105,12 @@ class SearchViewController: UIViewController {
                         self.movieData.append(data)
                     }
                     print(self.movieData)
+                    
                     //중요!!
-                    self.searchTableView.reloadData()
+                    DispatchQueue.main.async {
+                        self.searchTableView.reloadData()
+                    }
+                    
                     
                 case .failure(let error):
                     print(error)

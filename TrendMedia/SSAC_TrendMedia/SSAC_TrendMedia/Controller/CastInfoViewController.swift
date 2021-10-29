@@ -18,6 +18,7 @@ class CastInfoViewController: UIViewController {
     let tvShowData = TvShowData()
     //let selectedMovie:
     let castNames: [String] = []
+    
     // MARK: - VIEWDIDLOAD
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,8 @@ class CastInfoViewController: UIViewController {
         //  let url = URL(string: "https://example.com/image.png")
         // imageView.kf.setImage(with: url)
         //  movieBackgroundImage.image
+        
+        
         
         
     }//: viewDidLoad()
@@ -67,7 +70,7 @@ extension CastInfoViewController: UITableViewDelegate, UITableViewDataSource {
         
         
         let row = tvShowData.tvShow[indexPath.row]
-        
+       
         if indexPath.section == 0 {
             
             guard let cell = informationTableView.dequeueReusableCell(withIdentifier: StoryInformationTableViewCell.identifier) as? StoryInformationTableViewCell else {
