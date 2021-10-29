@@ -532,7 +532,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Z0b-xd-7uj">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="zVa-r4-lob">
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="zVa-r4-lob" userLabel="HeaderView">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="207"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -558,7 +558,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="StoryInformationTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryInformationTableViewCell" rowHeight="184" id="feC-IL-Nkc" customClass="StoryInformationTableViewCell" customModule="SSAC_TrendMedia" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="overviewTableViewCell" rowHeight="184" id="feC-IL-Nkc" customClass="overviewTableViewCell" customModule="SSAC_TrendMedia" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="251.5" width="414" height="184"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="feC-IL-Nkc" id="Vfy-Nq-NgY">
@@ -579,11 +579,8 @@
                                                 <constraint firstAttribute="trailing" secondItem="j0k-OA-RRL" secondAttribute="trailing" constant="20" id="cOr-qV-1UN"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="storyLabel" destination="j0k-OA-RRL" id="aB2-FU-ZZg"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CastInfoTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CastInfoTableViewCell" id="n7c-Hh-LIk" customClass="CastInfoTableViewCell" customModule="SSAC_TrendMedia" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CastInfoTableViewCell" id="n7c-Hh-LIk" customClass="CastInfoTableViewCell" customModule="SSAC_TrendMedia" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="435.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n7c-Hh-LIk" id="h8b-8s-W7r">

@@ -14,13 +14,14 @@ class CastInfoViewController: UIViewController {
     @IBOutlet weak var movieBackgroundImage: UIImageView!
     @IBOutlet weak var moviePosterImage: UIImageView!
     @IBOutlet weak var informationTableView: UITableView!
- 
+    
     // MovieTrendVC 에서 온 data
     var selectedMovieData: TvShow?
-
     let tvShowData = TvShowData()
-    //let selectedMovie:
-    let castNames: [String] = []
+    
+    // 사용할 selectedMovie 내용
+    var castNames: [String] = []
+    var overviewData = ""
     
     // MARK: - VIEWDIDLOAD
     override func viewDidLoad() {
@@ -32,6 +33,8 @@ class CastInfoViewController: UIViewController {
         // xib
         let nibName = UINib(nibName: CastInfoTableViewCell.identifier, bundle: nil)
         informationTableView.register(nibName, forCellReuseIdentifier: CastInfoTableViewCell.identifier)
+        let overviewNibName = UINib(nibName: overviewTableViewCell.identifier, bundle: nil)
+        informationTableView.register(overviewNibName, forCellReuseIdentifier: overviewTableViewCell.identifier)
         
         
         
@@ -39,20 +42,23 @@ class CastInfoViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "뒤로", style:  .plain, target:  self, action: #selector(closeButtonClicked))
         navigationItem.title = "출연/제작"
         
-        // var selectedMovieData: TvShow?
+        // optional 대응
         if selectedMovieData != nil {
             setBackgroundImage(movieData: selectedMovieData!)
             // 계속사용할수있도록 바꾸기 [ ]
-            let posterImageName = selectedMovieData?.tvShowtitle.replacingOccurrences(of: " ", with: "_").lowercased()
-            moviePosterImage.image = UIImage(named: posterImageName!) //강제해제 처리하기 [ ]
+            let posterImageName = selectedMovieData!.tvShowtitle.replacingOccurrences(of: " ", with: "_").lowercased()
+            moviePosterImage.image = UIImage(named: posterImageName) //강제해제 처리하기 [ ]
+            castNames = selectedMovieData!.starring.components(separatedBy: ", ")
+            overviewData = selectedMovieData!.overview
         } else {
+            // data없다면 기본 이미지
             movieBackgroundImage.image = UIImage(named: "background")
+            moviePosterImage.image = UIImage(named: "background")
+            castNames = ["출연진 정보가 없습니다."]
+            overviewData = "줄거리 정보가 없습니다."
         }
         
-        
-      
-        
-        
+        //TableViewAutomaticDimension
         
     }//: viewDidLoad()
     
@@ -67,57 +73,72 @@ class CastInfoViewController: UIViewController {
         let url = URL(string: movieData.backdropImage)
         movieBackgroundImage.kf.setImage(with: url)
     }
+    
+    
 }
 
 // MARK: - table view
 extension CastInfoViewController: UITableViewDelegate, UITableViewDataSource {
     
-
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         
-        return section == 0 ? 1 : 10
+        return section == 0 ? 1 : castNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        //let row = selectedMovieData.starring
-       
-        if indexPath.section == 0 {
+        if selectedMovieData != nil {
             
-            guard let cell = informationTableView.dequeueReusableCell(withIdentifier: StoryInformationTableViewCell.identifier) as? StoryInformationTableViewCell else {
-                return UITableViewCell()
+            if indexPath.section == 0 {
+                
+                guard let cell = informationTableView.dequeueReusableCell(withIdentifier: overviewTableViewCell.identifier) as? overviewTableViewCell else {
+                    return UITableViewCell()
+                }
+                
+                cell.overviewLabel.text = overviewData
+                return cell
+                
+            } else {
+                guard let cell = informationTableView.dequeueReusableCell(withIdentifier: CastInfoTableViewCell.identifier) as? CastInfoTableViewCell else {
+                    return UITableViewCell()
+                }
+                
+           
+                // 데이터의 title과 asset의 이미지 이름 같게 만들어 주기
+                // cell.starImage.image = UIImage(named: "backgroundcell    SSAC_TrendMedia.overviewTableViewCell    0x0000000106c113b0")
+                cell.starImage.image = UIImage(named: "starImage")
+                cell.starImage.layer.cornerRadius = 10
+                cell.starImage.contentMode = .scaleAspectFill
+                cell.realName.text = castNames[indexPath.row]
+                cell.roleName.text =  "뫄뫄 역할"
+            
+                return cell
             }
-          //  cell.storyLabel.text = selectedMovieData.overview
-            
-            return cell
-            
         } else {
-            guard let cell = informationTableView.dequeueReusableCell(withIdentifier: CastInfoTableViewCell.identifier) as? CastInfoTableViewCell else {
-                return UITableViewCell()
-            }
-            
-            // 데이터의 title과 asset의 이미지 이름 같게 만들어 주기
-           // cell.starImage.image = UIImage(named: "background")
-            cell.realName.text = "리처드해린슨"
-            cell.roleName.text =  "뫄뫄"
-            
-            
-            return cell
+            return UITableViewCell()
         }
     }
         
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return UIScreen.main.bounds.height / 10
+            
+            if indexPath.section == 0 {
+                return 100
+            }
+            else {
+                return UIScreen.main.bounds.height / 10
+            }
         }
         
-}
+    
     //lines 잊지 말기! 오토메틱디멘션: 태그/매개변수 등 다양한 방법이 있다.
     
-
+    
+}

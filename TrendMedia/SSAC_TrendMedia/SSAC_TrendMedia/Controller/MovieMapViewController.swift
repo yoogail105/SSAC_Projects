@@ -26,6 +26,8 @@ class MovieMapViewController: UIViewController {
     var lotteCinemaAnnotations: [MKAnnotation] = []
     var megaBoxAnnotations : [MKAnnotation] = []
     var allAnnotations:[MKAnnotation] = []
+
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,33 +160,24 @@ class MovieMapViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    // 위경도 -> 한국어 주소 변환
-    func getCurrentAddress(location: CLLocation) {
-        let geoCoder: CLGeocoder = CLGeocoder()
-        let location: CLLocation = location
-        
+    // 네비게이션 타이틀에 주소 입력
+    func getCurrentAddress(currnetLocation: CLLocationCoordinate2D) {
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: currnetLocation.latitude, longitude: currnetLocation.longitude)
         let locale = Locale(identifier: "Ko-kr")
-        
+        var address = (gu: "00구", dong: "00동")
         geoCoder.reverseGeocodeLocation(location, preferredLocale: locale, completionHandler:  { (placemark, error)-> Void in
             guard error == nil, let place = placemark?.first else {
                 print("주소 설정 불가능")
                 return
             }
-            
-            if let administrativeArea = place.administrativeArea {
-                print(administrativeArea)
-            }
-            
             if let locality =  place.locality {
-                print(locality)
+                address.gu = locality
             }
-            
             if let subLocality = place.subLocality {
-                print(subLocality)
+                address.dong = subLocality
             }
-            if let subThoroughfare = place.subThoroughfare {
-                print(subThoroughfare)
-            }
+            self.navigationItem.title = "\(address.gu) \(address.dong)"
         })
         
     }
@@ -203,7 +196,7 @@ extension MovieMapViewController: CLLocationManagerDelegate {
         
         if #available(iOS 14.0, *) {
             authorizationStatus = locationManager.authorizationStatus
-            locationManager.authorizationStatus
+    
         } else {
             authorizationStatus = CLLocationManager.authorizationStatus()
         }
@@ -257,7 +250,6 @@ extension MovieMapViewController: CLLocationManagerDelegate {
     }
     
     // MARK: - 1. didUpdateLocations: 사용자가 위치 허용을 했다면
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(#function)
         print(locations)
@@ -273,7 +265,7 @@ extension MovieMapViewController: CLLocationManagerDelegate {
             let region = MKCoordinateRegion(center: coordinate, span: span)
             movieMapView.setRegion(region, animated: true)
                 
-          //  getCurrentAddress(location: region )
+            getCurrentAddress(currnetLocation: coordinate)
             //10.위치업데이트 기준
             locationManager.stopUpdatingLocation()
             

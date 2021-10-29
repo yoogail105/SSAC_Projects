@@ -1,18 +1,17 @@
 //
-//  StoryInformationTableViewCell.swift
+//  overviewTableViewCell.swift
 //  SSAC_TrendMedia
 //
-//  Created by minjoohehe on 2021/10/25.
+//  Created by minjoohehe on 2021/10/29.
 //
 
 import UIKit
 
-class StoryInformationTableViewCell: UITableViewCell {
+class overviewTableViewCell: UITableViewCell {
+    @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var chevronButton: UIButton!
     
-    static let identifier = "StoryInformationTableViewCell"
-    
-    
-    @IBOutlet weak var storyLabel: UILabel!
+    static let identifier = "overviewTableViewCell"
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
