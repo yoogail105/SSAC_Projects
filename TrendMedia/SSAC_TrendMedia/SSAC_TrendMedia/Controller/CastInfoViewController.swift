@@ -14,7 +14,9 @@ class CastInfoViewController: UIViewController {
     @IBOutlet weak var movieBackgroundImage: UIImageView!
     @IBOutlet weak var informationTableView: UITableView!
  
-    
+    // MovieTrendVC 에서 온 data
+    var selectedMovieData: TvShow?
+
     let tvShowData = TvShowData()
     //let selectedMovie:
     let castNames: [String] = []
@@ -35,10 +37,18 @@ class CastInfoViewController: UIViewController {
         //pop
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "뒤로", style:  .plain, target:  self, action: #selector(closeButtonClicked))
         navigationItem.title = "출연/제작"
-        //  let url = URL(string: "https://example.com/image.png")
-        // imageView.kf.setImage(with: url)
-        //  movieBackgroundImage.image
         
+        // var selectedMovieData: TvShow?
+        if selectedMovieData != nil {
+//            let url = URL(string: selectedMovieData!.backdropImage)
+//            movieBackgroundImage.kf.setImage(with: url)
+            setBackgroundImage(movieData: selectedMovieData!)
+        } else {
+            movieBackgroundImage.image = UIImage(named: "background")
+        }
+        
+        
+      
         
         
         
@@ -48,6 +58,11 @@ class CastInfoViewController: UIViewController {
         // Push - Pop
         self.navigationController?.popViewController(animated: true)
         
+    }
+    
+    func setBackgroundImage(movieData: TvShow){
+        let url = URL(string: movieData.backdropImage)
+        movieBackgroundImage.kf.setImage(with: url)
     }
 }
 
@@ -69,14 +84,14 @@ extension CastInfoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        let row = tvShowData.tvShow[indexPath.row]
+        //let row = selectedMovieData.starring
        
         if indexPath.section == 0 {
             
             guard let cell = informationTableView.dequeueReusableCell(withIdentifier: StoryInformationTableViewCell.identifier) as? StoryInformationTableViewCell else {
                 return UITableViewCell()
             }
-            cell.storyLabel.text = row.overview
+          //  cell.storyLabel.text = selectedMovieData.overview
             
             return cell
             

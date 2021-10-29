@@ -58,6 +58,8 @@ class MovieTrendViewController: UIViewController {
             print("ERROR")
             return
         }
+        
+    
         //2-1 네비게이션 컨트롤러 임베드
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
@@ -130,15 +132,22 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource {
     //1. sb: 생략
     
     
-    // MARK: - TableView 선택하기?
+    // MARK: - TableView 선택하기? -> 화면 전환 & pass data
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //1. sb: 생략
+        //1. sb: 생략 -> self
         //2. vc
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: CastInfoViewController.identifier) as? CastInfoViewController else {
             print("Error")
             return
         }
-        //vc.selsctedMovie = tvShowData.tvShow[indexPath.row]
+        
+        // pass data
+//
+//        let row = trendMediaTVList[indexPath.row]
+//            vc.trendMediaTVData = row
+        
+        let row = tvShowData.tvShow[indexPath.row]
+        vc.selectedMovieData = row
         //3. push
         self.navigationController?.pushViewController(vc, animated: true)
         
