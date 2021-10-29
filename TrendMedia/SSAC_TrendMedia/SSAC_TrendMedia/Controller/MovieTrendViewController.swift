@@ -102,12 +102,12 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.backgroundColor = nil
         // 데이터의 title과 asset의 이미지 이름 같게 만들어 주기
-        let posterImageName = row.title.replacingOccurrences(of: " ", with: "_").lowercased()
+        let posterImageName = row.tvShowtitle.replacingOccurrences(of: " ", with: "_").lowercased()
         cell.posterImageView.image = UIImage(named: posterImageName)
         
         cell.releaseDateLabel.text = row.releaseDate
         cell.genreLabel.text = "#\(row.genre)"
-        cell.titleLabel.text = row.title
+        cell.titleLabel.text = row.tvShowtitle
         cell.textLabel?.textColor = .black
         cell.castNamesLabel.text = row.starring
         cell.castNamesLabel.textColor = .lightGray

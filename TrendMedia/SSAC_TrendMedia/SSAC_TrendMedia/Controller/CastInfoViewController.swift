@@ -12,6 +12,7 @@ class CastInfoViewController: UIViewController {
     static let identifier = "CastInfoViewController"
     
     @IBOutlet weak var movieBackgroundImage: UIImageView!
+    @IBOutlet weak var moviePosterImage: UIImageView!
     @IBOutlet weak var informationTableView: UITableView!
  
     // MovieTrendVC 에서 온 data
@@ -40,9 +41,10 @@ class CastInfoViewController: UIViewController {
         
         // var selectedMovieData: TvShow?
         if selectedMovieData != nil {
-//            let url = URL(string: selectedMovieData!.backdropImage)
-//            movieBackgroundImage.kf.setImage(with: url)
             setBackgroundImage(movieData: selectedMovieData!)
+            // 계속사용할수있도록 바꾸기 [ ]
+            let posterImageName = selectedMovieData?.tvShowtitle.replacingOccurrences(of: " ", with: "_").lowercased()
+            moviePosterImage.image = UIImage(named: posterImageName!) //강제해제 처리하기 [ ]
         } else {
             movieBackgroundImage.image = UIImage(named: "background")
         }
@@ -60,6 +62,7 @@ class CastInfoViewController: UIViewController {
         
     }
     
+    // Kingfisher
     func setBackgroundImage(movieData: TvShow){
         let url = URL(string: movieData.backdropImage)
         movieBackgroundImage.kf.setImage(with: url)

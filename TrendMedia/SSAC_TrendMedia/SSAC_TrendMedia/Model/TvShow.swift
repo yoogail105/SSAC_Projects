@@ -8,7 +8,7 @@
 
 
 struct TvShow {
-    let title: String
+    let tvShowtitle: String
     let releaseDate: String
     let genre: String
     let region: String

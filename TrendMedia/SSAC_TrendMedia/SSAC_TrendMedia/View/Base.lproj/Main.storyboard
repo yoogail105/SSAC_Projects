@@ -539,10 +539,19 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="the_baby-sitters_club" translatesAutoresizingMaskIntoConstraints="NO" id="Z5r-Fu-G9x">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="207"/>
                                         </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IxG-UH-vHE">
+                                            <rect key="frame" x="10" y="51" width="97.5" height="146"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="IxG-UH-vHE" secondAttribute="height" multiplier="2:3" id="Olh-ep-Js0"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
+                                        <constraint firstItem="IxG-UH-vHE" firstAttribute="leading" secondItem="zVa-r4-lob" secondAttribute="leading" constant="10" id="2p4-5y-lZG"/>
                                         <constraint firstItem="Z5r-Fu-G9x" firstAttribute="leading" secondItem="zVa-r4-lob" secondAttribute="leading" id="6bA-l7-mlT"/>
+                                        <constraint firstAttribute="bottom" secondItem="IxG-UH-vHE" secondAttribute="bottom" constant="10" id="P6g-dh-eId"/>
+                                        <constraint firstItem="IxG-UH-vHE" firstAttribute="height" secondItem="Z5r-Fu-G9x" secondAttribute="height" multiplier="0.705314" id="WP0-Gv-blQ"/>
                                         <constraint firstAttribute="trailing" secondItem="Z5r-Fu-G9x" secondAttribute="trailing" id="Zkt-aH-A9M"/>
                                         <constraint firstItem="Z5r-Fu-G9x" firstAttribute="top" secondItem="zVa-r4-lob" secondAttribute="top" id="bqR-EZ-SiM"/>
                                         <constraint firstAttribute="bottom" secondItem="Z5r-Fu-G9x" secondAttribute="bottom" id="cvQ-UE-pQZ"/>
@@ -598,6 +607,7 @@
                     <connections>
                         <outlet property="informationTableView" destination="Z0b-xd-7uj" id="DBS-Ev-KtQ"/>
                         <outlet property="movieBackgroundImage" destination="Z5r-Fu-G9x" id="BmK-7A-k49"/>
+                        <outlet property="moviePosterImage" destination="IxG-UH-vHE" id="ahd-Th-skJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X8I-mw-LxY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

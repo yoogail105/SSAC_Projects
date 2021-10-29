@@ -55,10 +55,10 @@ extension BookInformationViewController: UICollectionViewDelegate, UICollectionV
         let row = tvShowData.tvShow[indexPath.row]
         
         // cell data
-        let posterImageName = row.title.replacingOccurrences(of: " ", with: "_").lowercased()
+        let posterImageName = row.tvShowtitle.replacingOccurrences(of: " ", with: "_").lowercased()
         cell.moviePosterImage.image = UIImage(named: posterImageName)
         cell.movieRateLabel.text = String(row.rate)
-        cell.movieTitleLabel.text = row.title
+        cell.movieTitleLabel.text = row.tvShowtitle
         
         // cell design
         cell.layer.cornerRadius = 10
