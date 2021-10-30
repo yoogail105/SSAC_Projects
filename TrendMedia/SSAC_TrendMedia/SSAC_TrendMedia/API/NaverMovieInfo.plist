@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NAVER_ID</key>
-	<string>TiyeZP9lDqhLOv0v4haf</string>
+	<string>naver_id</string>
 	<key>NAVER_SECRET</key>
-	<string>kIOQaeJbEz</string>
+	<string>naver_secret</string>
 	<key>CFBundleIdentifier</key>
 	<string></string>
 </dict>
