@@ -3,6 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>APIKEY를 입력해 주세요</string>
+	<string>&quot;&quot;</string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
 </dict>
 </plist>

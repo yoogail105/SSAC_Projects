@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2721212C272A907800486EA5 /* OCRInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2721212B272A907800486EA5 /* OCRInfo.plist */; };
+		2721212E272A910D00486EA5 /* Detext++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2721212D272A910D00486EA5 /* Detext++Bundle.swift */; };
 		2759EFF7272990FE0016DA54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2759EFF6272990FE0016DA54 /* AppDelegate.swift */; };
 		2759EFF9272990FE0016DA54 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2759EFF8272990FE0016DA54 /* SceneDelegate.swift */; };
 		2759EFFB272990FE0016DA54 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2759EFFA272990FE0016DA54 /* ViewController.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2721212B272A907800486EA5 /* OCRInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = OCRInfo.plist; sourceTree = "<group>"; };
+		2721212D272A910D00486EA5 /* Detext++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detext++Bundle.swift"; sourceTree = "<group>"; };
 		2759EFF3272990FE0016DA54 /* Detext.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Detext.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2759EFF6272990FE0016DA54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2759EFF8272990FE0016DA54 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +51,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2721212F272A966A00486EA5 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2759EFF6272990FE0016DA54 /* AppDelegate.swift */,
+				2759EFF8272990FE0016DA54 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		27212130272A969600486EA5 /* Bundle */ = {
+			isa = PBXGroup;
+			children = (
+				2759F004272991000016DA54 /* Info.plist */,
+				2721212B272A907800486EA5 /* OCRInfo.plist */,
+				2759EFFF272991000016DA54 /* Assets.xcassets */,
+				2721212D272A910D00486EA5 /* Detext++Bundle.swift */,
+			);
+			path = Bundle;
+			sourceTree = "<group>";
+		};
+		27212131272A96AF00486EA5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2759EFFC272990FE0016DA54 /* Main.storyboard */,
+				2759F001272991000016DA54 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		27212132272A96BA00486EA5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2759F00A272995F90016DA54 /* DetectTextViewController.swift */,
+				2759EFFA272990FE0016DA54 /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		27212133272A999A00486EA5 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				2759F00C272996320016DA54 /* OCRAPIMannager.swift */,
+				2759F00E272998060016DA54 /* Constants.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		2759EFEA272990FE0016DA54 = {
 			isa = PBXGroup;
 			children = (
@@ -66,16 +117,11 @@
 		2759EFF5272990FE0016DA54 /* Detext */ = {
 			isa = PBXGroup;
 			children = (
-				2759EFF6272990FE0016DA54 /* AppDelegate.swift */,
-				2759EFF8272990FE0016DA54 /* SceneDelegate.swift */,
-				2759EFFA272990FE0016DA54 /* ViewController.swift */,
-				2759EFFC272990FE0016DA54 /* Main.storyboard */,
-				2759F00A272995F90016DA54 /* DetectTextViewController.swift */,
-				2759F00C272996320016DA54 /* OCRAPIMannager.swift */,
-				2759F00E272998060016DA54 /* Constants.swift */,
-				2759EFFF272991000016DA54 /* Assets.xcassets */,
-				2759F001272991000016DA54 /* LaunchScreen.storyboard */,
-				2759F004272991000016DA54 /* Info.plist */,
+				2721212F272A966A00486EA5 /* App */,
+				27212131272A96AF00486EA5 /* View */,
+				27212132272A96BA00486EA5 /* ViewController */,
+				27212130272A969600486EA5 /* Bundle */,
+				27212133272A999A00486EA5 /* API */,
 			);
 			path = Detext;
 			sourceTree = "<group>";
@@ -149,6 +195,7 @@
 				2759F003272991000016DA54 /* LaunchScreen.storyboard in Resources */,
 				2759F000272991000016DA54 /* Assets.xcassets in Resources */,
 				2759EFFE272990FE0016DA54 /* Main.storyboard in Resources */,
+				2721212C272A907800486EA5 /* OCRInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +212,7 @@
 				2759EFF9272990FE0016DA54 /* SceneDelegate.swift in Sources */,
 				2759F00D272996320016DA54 /* OCRAPIMannager.swift in Sources */,
 				2759F00F272998060016DA54 /* Constants.swift in Sources */,
+				2721212E272A910D00486EA5 /* Detext++Bundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +363,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 877MN2RY22;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Detext/Info.plist;
+				INFOPLIST_FILE = Detext/Bundle/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -343,7 +391,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 877MN2RY22;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Detext/Info.plist;
+				INFOPLIST_FILE = Detext/Bundle/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
