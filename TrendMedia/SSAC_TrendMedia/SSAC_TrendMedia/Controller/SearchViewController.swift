@@ -75,8 +75,8 @@ class SearchViewController: UIViewController, UITableViewDataSourcePrefetching {
             let url = "https://openapi.naver.com/v1/search/movie.json?query=\(query)&display=10&start=\(startPage)"
             
             let header: HTTPHeaders = [
-                "X-Naver-Client-Id": Bundle.main.NAVER_ID,
-                "X-Naver-Client-Secret": Bundle.main.NAVER_SECRET
+                "X-Naver-Client-Id": APIKey.NAVER_ID,
+                "X-Naver-Client-Secret": APIKey.NAVER_SECRET
             ]
             
             //비동기 처리하기
