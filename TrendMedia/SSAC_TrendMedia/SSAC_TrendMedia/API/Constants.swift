@@ -8,8 +8,8 @@
 import Foundation
 
 struct APIKey {
-    static let NAVER_ID = "TiyeZP9lDqhLOv0v4haf"
-    static let NAVER_SECRET = "kIOQaeJbEz"
+    static let NAVER_ID = Bundle.main.NAVER_ID
+    static let NAVER_SECRET = Bundle.main.NAVER_SECRET
 
 }
 

@@ -6,6 +6,8 @@
 	<string>naver_id</string>
 	<key>NAVER_SECRET</key>
 	<string>naver_secret</string>
+	<key>CFBundleExecutable</key>
+	<string></string>
 	<key>CFBundleIdentifier</key>
 	<string></string>
 </dict>
