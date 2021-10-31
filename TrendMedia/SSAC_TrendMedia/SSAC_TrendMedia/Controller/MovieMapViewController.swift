@@ -237,6 +237,7 @@ extension MovieMapViewController: CLLocationManagerDelegate {
         if #available(iOS 14.0, *) {
             let accurancyState = locationManager.accuracyAuthorization
             
+
             switch accurancyState {
                 //            case .fullAccuracy:
                 //

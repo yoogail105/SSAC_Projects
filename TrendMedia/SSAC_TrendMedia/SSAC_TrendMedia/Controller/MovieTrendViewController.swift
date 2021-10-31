@@ -6,23 +6,28 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import Kingfisher
+
 
 class MovieTrendViewController: UIViewController {
     
     static let identifier = "MovieTrendViewController"
     
-    @IBOutlet weak var trendMediaTableView: UITableView!
     //data
     let tvShowData = TvShowData()
+    var weeklyMovieData: [TMDBMovieModel] = []
+    var startPage = 1
     
     @IBOutlet weak var shadowMenuView: UIView!
     @IBOutlet weak var menuButtonsView: UIView!
     
+    @IBOutlet weak var trendMediaTableView: UITableView!
     
+    //    @IBOutlet weak var shadowTrendMediaView: UIView!
     
-//    @IBOutlet weak var shadowTrendMediaView: UIView!
-    
-  //  @IBOutlet weak var movieCardView: UIView!
+    //  @IBOutlet weak var movieCardView: UIView!
     
     // MARK: - ViewdidLoad
     override func viewDidLoad() {
@@ -30,12 +35,52 @@ class MovieTrendViewController: UIViewController {
         
         trendMediaTableView.delegate = self
         trendMediaTableView.dataSource = self
+        trendMediaTableView.prefetchDataSource = self
+        
+        weeklyDataLoad()
+        // 영화 장르
+        //        MoiveGenresAPIManager.shared.fetchMovieData { json in
+        //            print("movie genres: \(json)")
+        //        }
+        // 영화 디테일
+        //        MovieDetailsAPIManager.shared.fetchMovieData { json in
+        //            print("movie Details: \(json)")
+        //        }
+        
         
         // MARK: - UISetting
         shadowViewSetting(shadowView: shadowMenuView, contentView: menuButtonsView)
-
+        
     } //: ViewDidLoad
     
+    func weeklyDataLoad() {
+        //주간 영화 순위 fetch
+        WeeklyMovieAPIManager.shared.fetchWeeklyMovieData { json in
+            
+            print(#function, "weekly movie chart list")
+            
+            for data in json["results"].arrayValue {
+                let id = Int(data["id"].intValue)
+                let movieTitle = data["title"].stringValue
+                let voteAverage = data["vote_average"].doubleValue
+                let overview = data["overview"].stringValue
+                let releaseDate = data["release_date"].stringValue
+                //  let genreIds = data["genre_ids"].arrayValue
+                let backdropPath = data["backdrop_path"].stringValue
+                let posterPath = data["poster_path"].stringValue
+                
+                let allData = TMDBMovieModel(id: id, movieTitle: movieTitle, voteAverage: voteAverage, overview: overview, releaseDate: releaseDate, backdropPath: backdropPath, posterPath: posterPath)
+                self.weeklyMovieData.append(allData)
+            }
+            
+            
+            self.trendMediaTableView.reloadData()
+            print(self.weeklyMovieData)
+            
+            
+            
+        }
+    }
     
     func shadowViewSetting(shadowView: UIView, contentView: UIView) {
         shadowView.layer.cornerRadius = 10
@@ -59,7 +104,7 @@ class MovieTrendViewController: UIViewController {
             return
         }
         
-    
+        
         //2-1 네비게이션 컨트롤러 임베드
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
@@ -76,13 +121,14 @@ class MovieTrendViewController: UIViewController {
 
 
 // MARK: - extension: UITableView -> TableViewCell
-extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource {
+extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         //tvShowData에서 tvShow라는 tuple(?)의 갯수
-        return tvShowData.tvShow.count
-       
+        //return tvShowData.tvShow.count
+        return weeklyMovieData.count
+        
     }
     
     
@@ -98,31 +144,38 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource {
                 }
         
         
-        let row = tvShowData.tvShow[indexPath.row]
+        let row = weeklyMovieData[indexPath.row]
         
         cell.backgroundColor = nil
+        //"https://image.tmdb.org/t/p/\(file_size)/\(file_path)"
+        // 기본 사진 바꾸기 [ ]
+        if let imageUrl = URL(string: "https://image.tmdb.org/t/p/original/\(row.posterPath)") {
+            cell.posterImageView.kf.setImage(with: imageUrl, placeholder: UIImage(named: "background"))
+        } else {
+            cell.posterImageView.image = UIImage(named: "background")
+        }
         // 데이터의 title과 asset의 이미지 이름 같게 만들어 주기
-        let posterImageName = row.tvShowtitle.replacingOccurrences(of: " ", with: "_").lowercased()
-        cell.posterImageView.image = UIImage(named: posterImageName)
+        // let posterImageName = row.tvShowtitle.replacingOccurrences(of: " ", with: "_").lowercased()
+        // cell.posterImageView.image = UIImage(named: posterImageName)
         
         cell.releaseDateLabel.text = row.releaseDate
-        cell.genreLabel.text = "#\(row.genre)"
-        cell.titleLabel.text = row.tvShowtitle
+        cell.genreLabel.text = "#장르"
+        cell.titleLabel.text = row.movieTitle
         cell.textLabel?.textColor = .black
-        cell.castNamesLabel.text = row.starring
+        cell.castNamesLabel.text = "배우들"
         cell.castNamesLabel.textColor = .lightGray
-        cell.rateLabel.text = String(row.rate)
+        cell.rateLabel.text = (row.releaseDate).replacingOccurrences(of: "-", with: "/")
         cell.rateLabel.textColor = .black
         cell.selectionStyle = .none
         shadowViewSetting(shadowView: cell.shadowMovieCardView, contentView: cell.movieCardView)
-        
-    
+        self.trendMediaTableView.reloadData()
         return cell
+        
         
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-
+        
         return UIScreen.main.bounds.height / 1.8
     }
     
@@ -142,15 +195,30 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         // pass data
-//
-//        let row = trendMediaTVList[indexPath.row]
-//            vc.trendMediaTVData = row
+        //
+        //        let row = trendMediaTVList[indexPath.row]
+        //            vc.trendMediaTVData = row
         
-        let row = tvShowData.tvShow[indexPath.row]
-        vc.selectedMovieData = row
+        let row = weeklyMovieData[indexPath.row]
+        //vc.selectedMovieData = row
         //3. push
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
-
+    
+    
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            if weeklyMovieData.count - 1 == indexPath.row && weeklyMovieData.count < weeklyMovieData.count {
+                startPage += 10
+                weeklyDataLoad()
+                print(#function,"preretched")
+            }
+        }
+    }
+    
+    
+    
 }
+
