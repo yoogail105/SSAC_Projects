@@ -82,7 +82,7 @@ class SearchViewController: UIViewController, UITableViewDataSourcePrefetching {
             //비동기 처리하기
             DispatchQueue.global().async {
                 
-            }
+            
             
             AF.request(url, method: .get, headers: header).validate().responseJSON { response in
                 switch response.result {
@@ -113,6 +113,7 @@ class SearchViewController: UIViewController, UITableViewDataSourcePrefetching {
                 case .failure(let error):
                     print(error)
                 }
+            }
             }
         }
     }

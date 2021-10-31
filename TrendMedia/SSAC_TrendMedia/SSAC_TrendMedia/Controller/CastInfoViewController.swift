@@ -16,7 +16,7 @@ class CastInfoViewController: UIViewController {
     @IBOutlet weak var informationTableView: UITableView!
     
     // MovieTrendVC 에서 온 data
-    var selectedMovieData: TvShow?
+    var selectedMovieData: TMDBMovieModel?
     let tvShowData = TvShowData()
     
     // 사용할 selectedMovie 내용
@@ -44,11 +44,8 @@ class CastInfoViewController: UIViewController {
         
         // optional 대응
         if selectedMovieData != nil {
-            setBackgroundImage(movieData: selectedMovieData!)
-            // 계속사용할수있도록 바꾸기 [ ]
-            let posterImageName = selectedMovieData!.tvShowtitle.replacingOccurrences(of: " ", with: "_").lowercased()
-            moviePosterImage.image = UIImage(named: posterImageName) //강제해제 처리하기 [ ]
-            castNames = selectedMovieData!.starring.components(separatedBy: ", ")
+            setMovieImage(movieData: selectedMovieData!)
+            castNames = tvShowData.tvShow[1].starring.components(separatedBy: ", ")
             overviewData = selectedMovieData!.overview
         } else {
             // data없다면 기본 이미지
@@ -69,9 +66,12 @@ class CastInfoViewController: UIViewController {
     }
     
     // Kingfisher
-    func setBackgroundImage(movieData: TvShow){
-        let url = URL(string: movieData.backdropImage)
-        movieBackgroundImage.kf.setImage(with: url)
+    func setMovieImage(movieData: TMDBMovieModel){
+        let movieBackUrl = URL(string: Endpoint.MovieImageURL + movieData.backdropPath)
+        movieBackgroundImage.kf.setImage(with: movieBackUrl, placeholder: UIImage(named: "background"))
+        
+        let moviePosterUrl = URL(string: Endpoint.MovieImageURL + movieData.posterPath)
+        moviePosterImage.kf.setImage(with: moviePosterUrl, placeholder: UIImage(named: "background"))
     }
     
     

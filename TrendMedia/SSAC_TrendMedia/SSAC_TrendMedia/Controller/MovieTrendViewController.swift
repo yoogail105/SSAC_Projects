@@ -19,6 +19,7 @@ class MovieTrendViewController: UIViewController {
     let tvShowData = TvShowData()
     var weeklyMovieData: [TMDBMovieModel] = []
     var startPage = 1
+    var totalCount = 0
     
     @IBOutlet weak var shadowMenuView: UIView!
     @IBOutlet weak var menuButtonsView: UIView!
@@ -50,6 +51,8 @@ class MovieTrendViewController: UIViewController {
     } //: ViewDidLoad
     
     func weeklyDataLoad() {
+        
+        DispatchQueue.global().async {
         //주간 영화 순위 fetch
         WeeklyMovieAPIManager.shared.fetchWeeklyMovieData { json in
     
@@ -67,13 +70,14 @@ class MovieTrendViewController: UIViewController {
                 let posterPath = data["poster_path"].stringValue
                 
                 let allData = TMDBMovieModel(id: id, movieTitle: movieTitle, voteAverage: voteAverage, overview: overview, releaseDate: releaseDate, backdropPath: backdropPath, posterPath: posterPath)
+                self.totalCount += 1
                 self.weeklyMovieData.append(allData)
             }
-            
-            
-            self.trendMediaTableView.reloadData()
-            print(self.weeklyMovieData)
-        
+            print(self.totalCount)
+            DispatchQueue.main.async {
+                self.trendMediaTableView.reloadData()
+            }
+        }
         }
     }
     
@@ -153,13 +157,13 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource, 
         // let posterImageName = row.tvShowtitle.replacingOccurrences(of: " ", with: "_").lowercased()
         // cell.posterImageView.image = UIImage(named: posterImageName)
         
-        cell.releaseDateLabel.text = row.releaseDate
+        cell.releaseDateLabel.text = (row.releaseDate).replacingOccurrences(of: "-", with: "/")
         cell.genreLabel.text = "#장르"
         cell.titleLabel.text = row.movieTitle
         cell.textLabel?.textColor = .black
         cell.castNamesLabel.text = "배우들"
         cell.castNamesLabel.textColor = .lightGray
-        cell.rateLabel.text = (row.releaseDate).replacingOccurrences(of: "-", with: "/")
+        cell.rateLabel.text = String(format: "%.1f", row.voteAverage)
         cell.rateLabel.textColor = .black
         cell.selectionStyle = .none
         shadowViewSetting(shadowView: cell.shadowMovieCardView, contentView: cell.movieCardView)
@@ -190,12 +194,9 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource, 
         }
         
         // pass data
-        //
-        //        let row = trendMediaTVList[indexPath.row]
-        //            vc.trendMediaTVData = row
         
         let row = weeklyMovieData[indexPath.row]
-        //vc.selectedMovieData = row
+        vc.selectedMovieData = row
         //3. push
         self.navigationController?.pushViewController(vc, animated: true)
         
@@ -205,11 +206,13 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource, 
 
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
-            if weeklyMovieData.count - 1 == indexPath.row {
+            if weeklyMovieData.count - 1 == indexPath.row /*&& weeklyMovieData.count < totalCount*/ {
                 startPage += 1
                 weeklyDataLoad()
                 print(#function, "\(indexPath)")
+                print("prefetchRowAt: \(startPage)")
             }
+
         }
     }
 
