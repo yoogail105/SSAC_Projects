@@ -16,11 +16,7 @@ class WeeklyMovieAPIManager {
     
     func fetchWeeklyMovieData(result: @escaping (JSON) -> () ) {
         let url = Endpoint.WeeklyPopularURL
-        
-//        let header: HTTPHeaders = [ "api_key": APIKey.TMDB_API,
-//                                    "media_type": "tv",
-//                                    "time_window": "week"
-//        ]
+//        let url = "https://api.themoviedb.org/3/trending/movie/week?api_key=1bcbf4f171ad3cba243171af3df6ea38&language=en-US&display=10&start=\(startPage)"
 //
 
         AF.request(url, method: .get) .validate().responseJSON {

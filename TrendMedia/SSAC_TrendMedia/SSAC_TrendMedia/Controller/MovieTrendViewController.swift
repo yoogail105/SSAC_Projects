@@ -35,7 +35,7 @@ class MovieTrendViewController: UIViewController {
         
         trendMediaTableView.delegate = self
         trendMediaTableView.dataSource = self
-        trendMediaTableView.prefetchDataSource = self
+       trendMediaTableView.prefetchDataSource = self
         
         weeklyDataLoad()
         // 영화 장르
@@ -52,6 +52,7 @@ class MovieTrendViewController: UIViewController {
     func weeklyDataLoad() {
         //주간 영화 순위 fetch
         WeeklyMovieAPIManager.shared.fetchWeeklyMovieData { json in
+    
             
             print(#function, "weekly movie chart list")
             
@@ -72,9 +73,7 @@ class MovieTrendViewController: UIViewController {
             
             self.trendMediaTableView.reloadData()
             print(self.weeklyMovieData)
-            
-            
-            
+        
         }
     }
     
@@ -115,7 +114,7 @@ class MovieTrendViewController: UIViewController {
 }
 
 
-
+//
 // MARK: - extension: UITableView -> TableViewCell
 extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
     
@@ -164,7 +163,7 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource, 
         cell.rateLabel.textColor = .black
         cell.selectionStyle = .none
         shadowViewSetting(shadowView: cell.shadowMovieCardView, contentView: cell.movieCardView)
-        self.trendMediaTableView.reloadData()
+       
         return cell
         
         
@@ -203,7 +202,7 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource, 
     }
     
     
-    
+
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             if weeklyMovieData.count - 1 == indexPath.row {
@@ -213,11 +212,11 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource, 
             }
         }
     }
- 
+
     func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
             print(#function, "\(indexPaths)")
     }
-    
+
     
 }
 

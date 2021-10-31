@@ -6,7 +6,7 @@
 //
 
 import Foundation
-let startPage = 1
+var startPage = 1
 
 struct APIKey {
     static let NAVER_ID = Bundle.main.NAVER_ID
