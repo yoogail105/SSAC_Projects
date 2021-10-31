@@ -19,6 +19,7 @@ struct Endpoint {
     static let NaverMovieURL = ""
     static let WeeklyPopularURL =
     "https://api.themoviedb.org/3/trending/movie/week?api_key=\(APIKey.TMDB_API)&language=en-US&display=10&start=\(startPage)"
+    static let MovieImageURL = "https://image.tmdb.org/t/p/original/"
     static let MovieGenresURL =
     "https://api.themoviedb.org/3/genre/movie/list?api_key=\(APIKey.TMDB_API)&language=en-US"
     static let MovieDetailsURL = "https://api.themoviedb.org/3/movie/{movie_id}?api_key=\(APIKey.TMDB_API)&language=en-US"

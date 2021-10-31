@@ -42,10 +42,6 @@ class MovieTrendViewController: UIViewController {
         //        MoiveGenresAPIManager.shared.fetchMovieData { json in
         //            print("movie genres: \(json)")
         //        }
-        // 영화 디테일
-        //        MovieDetailsAPIManager.shared.fetchMovieData { json in
-        //            print("movie Details: \(json)")
-        //        }
         
         
         // MARK: - UISetting
@@ -60,7 +56,7 @@ class MovieTrendViewController: UIViewController {
             print(#function, "weekly movie chart list")
             
             for data in json["results"].arrayValue {
-                let id = Int(data["id"].intValue)
+                let id = data["id"].intValue
                 let movieTitle = data["title"].stringValue
                 let voteAverage = data["vote_average"].doubleValue
                 let overview = data["overview"].stringValue
@@ -125,7 +121,7 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource, 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        //tvShowData에서 tvShow라는 tuple(?)의 갯수
+    
         //return tvShowData.tvShow.count
         return weeklyMovieData.count
         
@@ -149,7 +145,7 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource, 
         cell.backgroundColor = nil
         //"https://image.tmdb.org/t/p/\(file_size)/\(file_path)"
         // 기본 사진 바꾸기 [ ]
-        if let imageUrl = URL(string: "https://image.tmdb.org/t/p/original/\(row.posterPath)") {
+        if let imageUrl = URL(string: Endpoint.MovieImageURL + row.posterPath) {
             cell.posterImageView.kf.setImage(with: imageUrl, placeholder: UIImage(named: "background"))
         } else {
             cell.posterImageView.image = UIImage(named: "background")
@@ -210,14 +206,17 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource, 
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
-            if weeklyMovieData.count - 1 == indexPath.row && weeklyMovieData.count < weeklyMovieData.count {
-                startPage += 10
+            if weeklyMovieData.count - 1 == indexPath.row {
+                startPage += 1
                 weeklyDataLoad()
-                print(#function,"preretched")
+                print(#function, "\(indexPath)")
             }
         }
     }
-    
+ 
+    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+            print(#function, "\(indexPaths)")
+    }
     
     
 }
