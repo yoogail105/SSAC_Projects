@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  SixDiary
+
+  Created by minjoohehe on 2021/11/01.
+  
+*/
+
+"tab_home" = "Home";
+"tab_Setting" = "Setting";
+"welcome_text" =  "Hello! Nice to meet you";

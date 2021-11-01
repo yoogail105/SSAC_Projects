@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Add View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="AddViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="AddViewController" customModule="SixDiary" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IHq-JU-Qsa">
+                                <rect key="frame" x="0.0" y="44" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="IHq-JU-Qsa" secondAttribute="height" multiplier="1:1" id="94c-lz-Y0Z"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qud-sJ-k7V">
+                                <rect key="frame" x="20" y="478" width="374" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Qud-sJ-k7V" secondAttribute="height" multiplier="8:1" id="TKv-9X-eIW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9L-7P-4SF">
+                                <rect key="frame" x="20" y="545" width="374" height="46.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="F9L-7P-4SF" secondAttribute="height" multiplier="8:1" id="yim-oD-iD2"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" text="일기를 작성해 주세요." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0CS-o3-ggX">
+                                <rect key="frame" x="20" y="611.5" width="374" height="210.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="IHq-JU-Qsa" secondAttribute="trailing" id="6Vk-Kr-jqG"/>
+                            <constraint firstItem="Qud-sJ-k7V" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="MWW-OC-CWZ"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="0CS-o3-ggX" secondAttribute="bottom" constant="40" id="TZB-pn-DAg"/>
+                            <constraint firstItem="IHq-JU-Qsa" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="WvW-vV-EHc"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Qud-sJ-k7V" secondAttribute="trailing" constant="20" id="YZd-bB-180"/>
+                            <constraint firstItem="F9L-7P-4SF" firstAttribute="trailing" secondItem="Qud-sJ-k7V" secondAttribute="trailing" id="ZQD-Ae-DzK"/>
+                            <constraint firstItem="Qud-sJ-k7V" firstAttribute="top" secondItem="IHq-JU-Qsa" secondAttribute="bottom" constant="20" id="ZhE-56-jZc"/>
+                            <constraint firstItem="IHq-JU-Qsa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="cw9-IJ-mcP"/>
+                            <constraint firstItem="F9L-7P-4SF" firstAttribute="top" secondItem="Qud-sJ-k7V" secondAttribute="bottom" constant="20" id="dae-Xu-q6l"/>
+                            <constraint firstItem="0CS-o3-ggX" firstAttribute="trailing" secondItem="F9L-7P-4SF" secondAttribute="trailing" id="g7m-dl-ZOQ"/>
+                            <constraint firstItem="0CS-o3-ggX" firstAttribute="top" secondItem="F9L-7P-4SF" secondAttribute="bottom" constant="20" id="mTx-Bo-xep"/>
+                            <constraint firstItem="F9L-7P-4SF" firstAttribute="leading" secondItem="Qud-sJ-k7V" secondAttribute="leading" id="qR0-Wq-QOX"/>
+                            <constraint firstItem="0CS-o3-ggX" firstAttribute="leading" secondItem="F9L-7P-4SF" secondAttribute="leading" id="sGJ-Jh-TuZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dateButton" destination="F9L-7P-4SF" id="yIC-4X-d8g"/>
+                        <outlet property="diaryImageView" destination="IHq-JU-Qsa" id="Iih-hw-TaG"/>
+                        <outlet property="diaryTextView" destination="0CS-o3-ggX" id="T4s-9Y-Jxw"/>
+                        <outlet property="diaryTitleTextField" destination="Qud-sJ-k7V" id="tCW-Cv-PJZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="47"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

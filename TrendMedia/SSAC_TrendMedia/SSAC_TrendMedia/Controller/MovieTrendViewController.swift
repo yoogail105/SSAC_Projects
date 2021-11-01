@@ -74,7 +74,9 @@ class MovieTrendViewController: UIViewController {
                 self.weeklyMovieData.append(allData)
             }
             print(self.totalCount)
+          //  print(self.weeklyMovieData)
             DispatchQueue.main.async {
+               
                 self.trendMediaTableView.reloadData()
             }
         }
@@ -167,7 +169,7 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource, 
         cell.rateLabel.textColor = .black
         cell.selectionStyle = .none
         shadowViewSetting(shadowView: cell.shadowMovieCardView, contentView: cell.movieCardView)
-       
+     
         return cell
         
         
@@ -194,7 +196,6 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource, 
         }
         
         // pass data
-        
         let row = weeklyMovieData[indexPath.row]
         vc.selectedMovieData = row
         //3. push
@@ -203,7 +204,7 @@ extension MovieTrendViewController: UITableViewDelegate, UITableViewDataSource, 
     }
     
     
-
+// MARK: - ERROR: [ ]
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             if weeklyMovieData.count - 1 == indexPath.row /*&& weeklyMovieData.count < totalCount*/ {

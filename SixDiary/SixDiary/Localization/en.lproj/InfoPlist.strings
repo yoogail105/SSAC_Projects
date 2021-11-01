@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  SixDiary
+
+  Created by minjoohehe on 2021/11/01.
+  
+*/
+
+CFBundleDisplayName = "SixDiary";
+NSCameraUsageDescription = "Please Access Camera";

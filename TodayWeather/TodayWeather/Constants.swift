@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct APIKey {
+    static let OPENWEATHER = "3d8d82f6a9de680db72154214d5fbea1"
+}
+
+struct Endpoint {
+    static let WeatherURL = "https://api.openweathermap.org/data/2.5/weather?lat=\(WeatherViewController.currentLocation.latitude)&lon=\(WeatherViewController.currentLocation.longitude)&appid=\(APIKey.OPENWEATHER)"
+}

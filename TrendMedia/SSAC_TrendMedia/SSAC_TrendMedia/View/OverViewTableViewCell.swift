@@ -7,11 +7,11 @@
 
 import UIKit
 
-class overviewTableViewCell: UITableViewCell {
+class OverViewTableViewCell: UITableViewCell {
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var chevronButton: UIButton!
     
-    static let identifier = "overviewTableViewCell"
+    static let identifier = "OverViewTableViewCell"
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

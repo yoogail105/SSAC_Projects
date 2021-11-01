@@ -18,7 +18,7 @@ class CastInfoViewController: UIViewController {
     // MovieTrendVC 에서 온 data
     var selectedMovieData: TMDBMovieModel?
     let tvShowData = TvShowData()
-    
+    var isLong = false
     // 사용할 selectedMovie 내용
     var castNames: [String] = []
     var overviewData = ""
@@ -33,8 +33,10 @@ class CastInfoViewController: UIViewController {
         // xib
         let nibName = UINib(nibName: CastInfoTableViewCell.identifier, bundle: nil)
         informationTableView.register(nibName, forCellReuseIdentifier: CastInfoTableViewCell.identifier)
-        let overviewNibName = UINib(nibName: overviewTableViewCell.identifier, bundle: nil)
-        informationTableView.register(overviewNibName, forCellReuseIdentifier: overviewTableViewCell.identifier)
+        
+        // MARK: - ERROR: reason: 'Could not load NIB in bundle: 'NSBundle [ ]
+        let overviewNibName = UINib(nibName: OverViewTableViewCell.identifier, bundle: nil)
+        informationTableView.register(overviewNibName, forCellReuseIdentifier: OverViewTableViewCell.identifier)
         
         
         
@@ -45,6 +47,7 @@ class CastInfoViewController: UIViewController {
         // optional 대응
         if selectedMovieData != nil {
             setMovieImage(movieData: selectedMovieData!)
+            // MARK: - castname
             castNames = tvShowData.tvShow[1].starring.components(separatedBy: ", ")
             overviewData = selectedMovieData!.overview
         } else {
@@ -64,6 +67,9 @@ class CastInfoViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
         
     }
+    
+    
+    
     
     // Kingfisher
     func setMovieImage(movieData: TMDBMovieModel){
@@ -99,11 +105,18 @@ extension CastInfoViewController: UITableViewDelegate, UITableViewDataSource {
             
             if indexPath.section == 0 {
                 
-                guard let cell = informationTableView.dequeueReusableCell(withIdentifier: overviewTableViewCell.identifier) as? overviewTableViewCell else {
+                guard let cell = informationTableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.identifier) as? OverViewTableViewCell else {
                     return UITableViewCell()
                 }
                 
                 cell.overviewLabel.text = overviewData
+                
+                if isLong == true {
+                    cell.chevronButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
+                } else {
+                    cell.chevronButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+                   
+                }
                 return cell
                 
             } else {
@@ -111,7 +124,7 @@ extension CastInfoViewController: UITableViewDelegate, UITableViewDataSource {
                     return UITableViewCell()
                 }
                 
-           
+                
                 // 데이터의 title과 asset의 이미지 이름 같게 만들어 주기
                 // cell.starImage.image = UIImage(named: "backgroundcell    SSAC_TrendMedia.overviewTableViewCell    0x0000000106c113b0")
                 cell.starImage.image = UIImage(named: "starImage")
@@ -119,26 +132,27 @@ extension CastInfoViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.starImage.contentMode = .scaleAspectFill
                 cell.realName.text = castNames[indexPath.row]
                 cell.roleName.text =  "뫄뫄 역할"
-            
+                
                 return cell
             }
         } else {
             return UITableViewCell()
         }
     }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            
-            if indexPath.section == 0 {
-                return 100
-            }
-            else {
-                return UIScreen.main.bounds.height / 10
-            }
+        if indexPath.section == 0 {
+            return 100
         }
-        
+        else {
+            return UIScreen.main.bounds.height / 10
+        }
+    }
+}
     
     //lines 잊지 말기! 오토메틱디멘션: 태그/매개변수 등 다양한 방법이 있다.
     
     
-}
+    

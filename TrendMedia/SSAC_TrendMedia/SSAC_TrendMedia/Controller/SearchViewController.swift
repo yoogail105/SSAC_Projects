@@ -33,8 +33,9 @@ class SearchViewController: UIViewController, UITableViewDataSourcePrefetching {
     static let identifier = "SearchViewController"
     
     var movieData: [MovieModel] = []
-    var startPage = 1
+    //static var startPage = 1
     var totalCount = 0
+    static var searchMovie = ""
     
     // MARK: - viewdidLoad
     override func viewDidLoad() {

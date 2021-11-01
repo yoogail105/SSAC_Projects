@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  SixDiary
+
+  Created by minjoohehe on 2021/11/01.
+  
+*/
+CFBundleDisplayName = "식스 다이어리";
+
+NSCameraUsageDescription = "카메라 권한이 필요합니다.";
