@@ -13,14 +13,14 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        naviItem()
     }
-     
-    
 
-    @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
-   
+    func naviItem() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(AddButtonClicked))
+    }
+    
+    @objc func AddButtonClicked() {
         let contentSB = UIStoryboard(name: "Content", bundle: nil)
         guard let addVC = contentSB.instantiateViewController(withIdentifier: AddViewController.identifier) as? AddViewController else {
             print("Error")
@@ -29,4 +29,10 @@ class HomeViewController: UIViewController {
         addVC.modalPresentationStyle = .fullScreen
         self.present(addVC, animated: true, completion: nil)
     }
+    
+    /*
+    @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
+        print("add Button Clicked")
+    }
+     */
 }

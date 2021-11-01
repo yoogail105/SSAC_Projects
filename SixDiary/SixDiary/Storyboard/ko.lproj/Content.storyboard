@@ -17,45 +17,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IHq-JU-Qsa">
-                                <rect key="frame" x="0.0" y="88" width="414" height="414"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="414"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="IHq-JU-Qsa" secondAttribute="height" multiplier="1:1" id="R3E-BC-kU0"/>
+                                    <constraint firstAttribute="width" secondItem="IHq-JU-Qsa" secondAttribute="height" multiplier="1:1" id="94c-lz-Y0Z"/>
                                 </constraints>
                             </imageView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UsZ-lT-YeW">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <items>
-                                    <navigationItem title="일기 쓰기" id="ot9-yS-z5G">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" image="xmark" catalog="system" id="kd1-dM-NMa">
-                                            <color key="tintColor" systemColor="labelColor"/>
-                                            <connections>
-                                                <action selector="closeButtonClicked:" destination="Y6W-OH-hqX" id="MtR-F3-tFd"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="저장" id="GGK-XR-zIf">
-                                            <color key="tintColor" systemColor="labelColor"/>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qud-sJ-k7V">
-                                <rect key="frame" x="20" y="512" width="374" height="47"/>
+                                <rect key="frame" x="20" y="478" width="374" height="47"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Qud-sJ-k7V" secondAttribute="height" multiplier="8:1" id="TkO-R4-DXq"/>
+                                    <constraint firstAttribute="width" secondItem="Qud-sJ-k7V" secondAttribute="height" multiplier="8:1" id="TKv-9X-eIW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9L-7P-4SF">
-                                <rect key="frame" x="20" y="569" width="374" height="46.5"/>
+                                <rect key="frame" x="20" y="545" width="374" height="46.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="F9L-7P-4SF" secondAttribute="height" multiplier="8:1" id="g1c-Yk-RTk"/>
+                                    <constraint firstAttribute="width" secondItem="F9L-7P-4SF" secondAttribute="height" multiplier="8:1" id="yim-oD-iD2"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" text="일기를 작성해 주세요." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0CS-o3-ggX">
-                                <rect key="frame" x="20" y="625.5" width="374" height="226.5"/>
+                                <rect key="frame" x="20" y="611.5" width="374" height="210.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -65,31 +49,26 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="F9L-7P-4SF" firstAttribute="centerX" secondItem="Qud-sJ-k7V" secondAttribute="centerX" id="0zl-uV-NWS"/>
-                            <constraint firstItem="0CS-o3-ggX" firstAttribute="trailing" secondItem="Qud-sJ-k7V" secondAttribute="trailing" id="4EZ-EP-QGu"/>
-                            <constraint firstItem="IHq-JU-Qsa" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="9Fb-NU-Gfn"/>
-                            <constraint firstItem="0CS-o3-ggX" firstAttribute="leading" secondItem="Qud-sJ-k7V" secondAttribute="leading" id="9zK-yR-a5w"/>
-                            <constraint firstItem="IHq-JU-Qsa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="AaT-GA-a8A"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="0CS-o3-ggX" secondAttribute="bottom" constant="10" id="LMl-ci-Y7D"/>
-                            <constraint firstItem="UsZ-lT-YeW" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="R3Q-if-PGJ"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Qud-sJ-k7V" secondAttribute="trailing" constant="20" id="TSv-bB-blf"/>
-                            <constraint firstItem="IHq-JU-Qsa" firstAttribute="top" secondItem="UsZ-lT-YeW" secondAttribute="bottom" id="bGk-gD-yxA"/>
-                            <constraint firstItem="Qud-sJ-k7V" firstAttribute="top" secondItem="IHq-JU-Qsa" secondAttribute="bottom" constant="10" id="eVA-23-9ZO"/>
-                            <constraint firstItem="UsZ-lT-YeW" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="gB3-G2-nNp"/>
-                            <constraint firstItem="Qud-sJ-k7V" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="m43-FQ-aXi"/>
-                            <constraint firstItem="0CS-o3-ggX" firstAttribute="top" secondItem="F9L-7P-4SF" secondAttribute="bottom" constant="10" id="nnG-9n-GKZ"/>
-                            <constraint firstItem="F9L-7P-4SF" firstAttribute="top" secondItem="Qud-sJ-k7V" secondAttribute="bottom" constant="10" id="rrF-qw-m9k"/>
-                            <constraint firstItem="F9L-7P-4SF" firstAttribute="trailing" secondItem="Qud-sJ-k7V" secondAttribute="trailing" id="sdg-bE-XiA"/>
-                            <constraint firstItem="UsZ-lT-YeW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="w9F-LI-yyD"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="IHq-JU-Qsa" secondAttribute="trailing" id="6Vk-Kr-jqG"/>
+                            <constraint firstItem="Qud-sJ-k7V" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="MWW-OC-CWZ"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="0CS-o3-ggX" secondAttribute="bottom" constant="40" id="TZB-pn-DAg"/>
+                            <constraint firstItem="IHq-JU-Qsa" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="WvW-vV-EHc"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Qud-sJ-k7V" secondAttribute="trailing" constant="20" id="YZd-bB-180"/>
+                            <constraint firstItem="F9L-7P-4SF" firstAttribute="trailing" secondItem="Qud-sJ-k7V" secondAttribute="trailing" id="ZQD-Ae-DzK"/>
+                            <constraint firstItem="Qud-sJ-k7V" firstAttribute="top" secondItem="IHq-JU-Qsa" secondAttribute="bottom" constant="20" id="ZhE-56-jZc"/>
+                            <constraint firstItem="IHq-JU-Qsa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="cw9-IJ-mcP"/>
+                            <constraint firstItem="F9L-7P-4SF" firstAttribute="top" secondItem="Qud-sJ-k7V" secondAttribute="bottom" constant="20" id="dae-Xu-q6l"/>
+                            <constraint firstItem="0CS-o3-ggX" firstAttribute="trailing" secondItem="F9L-7P-4SF" secondAttribute="trailing" id="g7m-dl-ZOQ"/>
+                            <constraint firstItem="0CS-o3-ggX" firstAttribute="top" secondItem="F9L-7P-4SF" secondAttribute="bottom" constant="20" id="mTx-Bo-xep"/>
+                            <constraint firstItem="F9L-7P-4SF" firstAttribute="leading" secondItem="Qud-sJ-k7V" secondAttribute="leading" id="qR0-Wq-QOX"/>
+                            <constraint firstItem="0CS-o3-ggX" firstAttribute="leading" secondItem="F9L-7P-4SF" secondAttribute="leading" id="sGJ-Jh-TuZ"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="closeButton" destination="kd1-dM-NMa" id="qdt-7Q-tLI"/>
                         <outlet property="dateButton" destination="F9L-7P-4SF" id="yIC-4X-d8g"/>
                         <outlet property="diaryImageView" destination="IHq-JU-Qsa" id="Iih-hw-TaG"/>
                         <outlet property="diaryTextView" destination="0CS-o3-ggX" id="T4s-9Y-Jxw"/>
                         <outlet property="diaryTitleTextField" destination="Qud-sJ-k7V" id="tCW-Cv-PJZ"/>
-                        <outlet property="saveButton" destination="GGK-XR-zIf" id="B4a-W2-dGR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -98,7 +77,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
