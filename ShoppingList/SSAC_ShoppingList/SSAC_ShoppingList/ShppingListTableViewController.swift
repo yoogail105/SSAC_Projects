@@ -10,7 +10,7 @@ import RealmSwift
 
 class ShppingListTableViewController: UITableViewController {
     
-
+    
     // MARK: - PROPERTIES
     
     let localRealm = try! Realm()
@@ -32,13 +32,13 @@ class ShppingListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        tasks = localRealm.objects(UserShoppingList.self)
+        
         print(tasks)
         print("Realm is located at:",localRealm.configuration.fileURL!)
         
-        //배열에서 Realm데이터 가져오기
+        //배열에 Realm데이터 가져오기
         tasks = localRealm.objects(UserShoppingList.self).sorted(byKeyPath: "shoppingContent", ascending: false)
-
+        
     } //: VIEWDIDLOAD
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +46,28 @@ class ShppingListTableViewController: UITableViewController {
         
         tableView.reloadData()
     }
+    
+    @objc func checkButtonClicked(sender: UIButton) {
+        var clickedButtonNumber = sender.tag
+        print("check: \(clickedButtonNumber)")
+        
+        let taskToUpdate = tasks[clickedButtonNumber]
+        try! localRealm.write {
+            taskToUpdate.isChecked = !taskToUpdate.isChecked
+            tableView.reloadData()
+        }
+    }
+    
+    @objc func starButtonClicked(sender: UIButton) {
+        var clickedButtonNumber = sender.tag
+        print("check: \(clickedButtonNumber)")
+        let taskToUpdate = tasks[clickedButtonNumber]
+        try! localRealm.write {
+            taskToUpdate.isStar = !taskToUpdate.isStar
+            tableView.reloadData()
+        }
+    }
+    
     
     func setUI() {
         writeTextFiled.backgroundColor = .clear
@@ -68,10 +90,11 @@ class ShppingListTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        let row = tasks[indexPath.row]
+        let row = tasks[indexPath.row] //record 하나
         
         cell.shoppingListLabel.text = row.shoppingContent
-        
+        cell.starButton.tag = indexPath.row
+        cell.checkButton.tag = indexPath.row
         // 버튼 변경 처리
         if row.isChecked { //true이면
             cell.checkButton?.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
@@ -84,6 +107,17 @@ class ShppingListTableViewController: UITableViewController {
         } else {
             cell.starButton?.setImage(UIImage(systemName: "star"), for: .normal)
         }
+        /*
+         // heartButton
+         cell.heartButton.tag = indexPath.item
+         cell.heartButton.addTarget(self, action: #selector(heartButtonClicked(selectedButton: )),for:.touchUpInside)
+         */
+        
+        cell.checkButton.addTarget(self, action: #selector(checkButtonClicked(sender:)), for:.touchUpInside)
+        
+        cell.starButton.addTarget(self, action: #selector(starButtonClicked(sender:)), for:.touchUpInside)
+
+        //-> 탭을 하면 realm의 데이터를 변경시킨다.
         
         
         
@@ -106,11 +140,11 @@ class ShppingListTableViewController: UITableViewController {
     
     @IBAction func addButtonClicked(_ sender: UIButton) {
         print(#function)
-       // list.append(writeTextFiled.text)
+        // list.append(writeTextFiled.text)
         // optional 대응
         guard let shoppingContentText = writeTextFiled.text, shoppingContentText != "" else { return /* 아무것도 입력하지 않았을 때는 어떻게? */}
         
-        // 등록시에는 즐찾,구매여부 모두 false 상태로 realm에 저장할 레코드 생성
+        // 처음 등록시에는 즐찾,구매여부 모두 false 상태로 realm에 저장할 레코드 생성
         let task = UserShoppingList(shoppingContent: shoppingContentText, isChecked: false, isStar: false)
         try! localRealm.write {
             localRealm.add(task)
@@ -125,14 +159,6 @@ class ShppingListTableViewController: UITableViewController {
      cell.starButton.addTarget() -> @objc func ~~
      */
     //-> 변경사항 어떻게 반영하는지..?
-    @IBAction func checkButtonClicked(_ sender: UIButton) {
-        print("checkButtonClicked")
-        
-        
-    }
     
-    @IBAction func starButtonClicked(_ sender: UIButton) {
-        print("starButtonClicked")
-    }
     
 }
