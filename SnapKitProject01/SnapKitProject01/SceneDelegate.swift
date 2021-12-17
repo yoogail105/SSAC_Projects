@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  SnapKitPractice
+//  SnapKitProject01
 //
-//  Created by 성민주민주 on 2021/12/15.
+//  Created by 성민주민주 on 2021/12/17.
 //
 
 import UIKit
@@ -13,17 +13,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
         window?.windowScene = windowScene
-        window?.rootViewController = TabBarController()
+        window?.rootViewController = MusicViewController()
         window?.makeKeyAndVisible()
-//
-//        let vc = HomeViewController()
-//        let nav = UINavigationController(rootViewController: vc)
-//        window?.rootViewController = TabBarController()
-//        window?.makeKeyAndVisible()
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
