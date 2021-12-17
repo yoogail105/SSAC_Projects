@@ -9,7 +9,12 @@ import UIKit
 import SnapKit
 
 class HomeViewController: UIViewController {
-
+    
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        
+        return tableView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
