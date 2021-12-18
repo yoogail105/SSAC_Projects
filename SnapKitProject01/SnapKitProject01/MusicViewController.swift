@@ -27,7 +27,13 @@ class MusicViewController: UIViewController {
     
     let bodyBox: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray
+        //view.backgroundColor = .gray
+        return view
+    }()
+    
+    let middleBar: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
         return view
     }()
     
@@ -62,11 +68,55 @@ class MusicViewController: UIViewController {
         
         return image
     }()
-    // heartButton
-    // heartLabel
-    // lyricLabel
-    // similarButton
-    // instagramButton
+    
+    
+    let heartButton: UIButton = {
+      let button = UIButton()
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.tintColor = .lightGray
+        return button
+    }()
+    
+    let heartLabel: UILabel = {
+        let label = UILabel()
+        label.text = "101,354"
+        label.textColor = .lightGray
+        label.font = .systemFont(ofSize: 10)
+        return label
+    }()
+    
+    let similarButton: UIButton = {
+       let button = UIButton()
+        button.setTitle("유사곡", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 10)
+        button.tintColor = .lightGray
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 5
+        return button
+    }()
+    
+    let instagramButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "square.dashed.inset.filled"), for: .normal)
+        button.tintColor = .white
+       return button
+    }()
+    
+    let lyricBox: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    let lyricLabel: UILabel = {
+        let label = UILabel()
+        label.text = "달이 익어가니 서둘러 젊은 피야\n민들레 한 송이 들고"
+        label.textColor = .white
+        label.numberOfLines = 2
+        label.font = .systemFont(ofSize: 15, weight: .light)
+        label.textAlignment = .center
+        return label
+    }()
     // modeButton
     // progressBarImage
     // modeButton
@@ -103,10 +153,16 @@ class MusicViewController: UIViewController {
             headerBox.addSubview($0)
         }
         
-        [albumImage].forEach {
+        [albumImage, middleBar, lyricBox].forEach {
             
             bodyBox.addSubview($0)
         }
+        
+        [heartButton, heartLabel, similarButton, instagramButton].forEach {
+            middleBar.addSubview($0)
+        }
+        
+        lyricBox.addSubview(lyricLabel)
         
         
         
@@ -149,6 +205,47 @@ class MusicViewController: UIViewController {
             $0.trailing.equalTo(bodyBox)
             $0.height.equalTo(bodyBox.snp.width)
         }
+        
+        middleBar.snp.makeConstraints {
+            $0.trailing.equalTo(bodyBox)
+            $0.leading.equalTo(bodyBox)
+            $0.top.equalTo(albumImage.snp.bottom).offset(10)
+            $0.height.equalTo(30)
+        }
+        
+        heartButton.snp.makeConstraints {
+            $0.leading.equalTo(middleBar)
+            $0.centerY.equalTo(middleBar)
+        }
+        
+        heartLabel.snp.makeConstraints {
+            $0.leading.equalTo(heartButton.snp.trailing).offset(5)
+            $0.centerY.equalTo(middleBar)
+        }
+        
+        instagramButton.snp.makeConstraints {
+            $0.trailing.equalTo(middleBar.snp.trailing)
+            $0.centerY.equalTo(middleBar)
+        }
+        
+        similarButton.snp.makeConstraints {
+            $0.trailing.equalTo(instagramButton.snp.leading).offset(-5)
+            $0.centerY.equalTo(middleBar)
+            $0.height.equalTo(15)
+        }
+        
+        lyricBox.snp.makeConstraints {
+            $0.top.equalTo(middleBar.snp.bottom)
+            $0.bottom.equalTo(bodyBox.snp.bottom)
+            $0.leading.equalTo(bodyBox.snp.leading)
+            $0.trailing.equalTo(bodyBox.snp.trailing)
+        }
+        
+        lyricLabel.snp.makeConstraints{
+            $0.centerY.equalTo(lyricBox)
+            $0.centerX.equalTo(lyricBox)
+        }
+        
         
     }
 
