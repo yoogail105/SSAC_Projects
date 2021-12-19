@@ -13,6 +13,7 @@
 		235EF54B276C4FDF005EE3D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 235EF54A276C4FDF005EE3D7 /* Assets.xcassets */; };
 		235EF54E276C4FDF005EE3D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 235EF54C276C4FDF005EE3D7 /* LaunchScreen.storyboard */; };
 		235EF557276C507A005EE3D7 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 235EF556276C507A005EE3D7 /* SnapKit */; };
+		235EF559276E2C85005EE3D7 /* playerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235EF558276E2C85005EE3D7 /* playerButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		235EF54A276C4FDF005EE3D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		235EF54D276C4FDF005EE3D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		235EF54F276C4FDF005EE3D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		235EF558276E2C85005EE3D7 /* playerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playerButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				235EF541276C4FDD005EE3D7 /* AppDelegate.swift */,
 				235EF543276C4FDD005EE3D7 /* SceneDelegate.swift */,
 				235EF545276C4FDD005EE3D7 /* MusicViewController.swift */,
+				235EF558276E2C85005EE3D7 /* playerButton.swift */,
 				235EF54A276C4FDF005EE3D7 /* Assets.xcassets */,
 				235EF54C276C4FDF005EE3D7 /* LaunchScreen.storyboard */,
 				235EF54F276C4FDF005EE3D7 /* Info.plist */,
@@ -144,6 +147,7 @@
 			files = (
 				235EF546276C4FDD005EE3D7 /* MusicViewController.swift in Sources */,
 				235EF542276C4FDD005EE3D7 /* AppDelegate.swift in Sources */,
+				235EF559276E2C85005EE3D7 /* playerButton.swift in Sources */,
 				235EF544276C4FDD005EE3D7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
