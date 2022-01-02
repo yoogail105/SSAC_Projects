@@ -30,6 +30,7 @@ class OCRAPIManager {
                 
                 switch response.result {
                 case .success(let value):
+                    
                     var detectedString = ""
                     var detectedTextSet: [String] = []
                     let json = JSON(value)
@@ -46,6 +47,7 @@ class OCRAPIManager {
                     let code = response.response?.statusCode ?? 500
                     
                     result(code, detectedString)
+                    
                 case .failure(let error):
                     print(error)
                 }
