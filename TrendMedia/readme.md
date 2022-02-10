@@ -48,7 +48,7 @@ func showAllAnnotation(selectedAnnotations: [MKAnnotation]) {
 }
 ```
 ---
-## 문제 해결 과정(과제중..작성중..)
+## 문제 해결 과정
 
 ### ✔︎tvShowData의 title이름이 실제 asset에 담긴 이름과 같은가?
 
